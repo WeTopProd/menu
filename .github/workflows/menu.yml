@@ -42,14 +42,14 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/tyteda-backend:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/menu-backend:latest
           context: backend
           file: backend/Dockerfile
       - name: Push to Docker Hub frontend
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/tyteda-frontend:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/menu-frontend:latest
           context: frontend
           file: frontend/Dockerfile
     deploy:
@@ -66,12 +66,12 @@ jobs:
             password: ${{ secrets.PASSPHRASE }}
             key: ${{ secrets.SSH_KEY }}
             script: |
-              cd tyteda/
+              cd menu/
               sudo docker-compose down -v
-              sudo docker image rm ${{secrets.DOCKER_USERNAME }}/tyteda-backend
-              sudo docker image rm ${{secrets.DOCKER_USERNAME }}/tyteda-frontend
-              sudo docker pull ${{ secrets.DOCKER_USERNAME }}/tyteda-frontend:latest
-              sudo docker pull ${{ secrets.DOCKER_USERNAME }}/tyteda-backend:latest
+              sudo docker image rm ${{secrets.DOCKER_USERNAME }}/menu-backend
+              sudo docker image rm ${{secrets.DOCKER_USERNAME }}/menu-frontend
+              sudo docker pull ${{ secrets.DOCKER_USERNAME }}/menu-frontend:latest
+              sudo docker pull ${{ secrets.DOCKER_USERNAME }}/menu-backend:latest
               sudo docker-compose up -d
               sudo docker-compose exec -T backend python manage.py makemigrations
               sudo docker-compose exec -T backend python manage.py migrate --noinput

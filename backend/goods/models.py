@@ -41,9 +41,8 @@ class Goods(models.Model):
         ('wok', 'Вок'),
         ('children_menu', 'Детское меню'),
         ('seasonal_dishes', 'Сезонные блюда'),
-        ('cold_snacks', 'Холодные закуски'),
-        ('hot_snacks', 'Горячие закуски'),
-        ('first_dish', 'Первые блюда')
+        ('snacks', 'Закуски'),
+        ('soups', 'Супы')
     )
     PROMO_GOODS = (
         ('promotion', 'Акция'),

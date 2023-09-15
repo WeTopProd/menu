@@ -77,14 +77,14 @@ class Goods(models.Model):
     type = models.ForeignKey(
         GoodsType,
         on_delete=models.SET_NULL,
-        verbose_name='Тип товара',
+        verbose_name='Тип меню',
         blank=True,
         null=True
     )
     subtype = models.ForeignKey(
         GoodsSubtype,
         on_delete=models.SET_NULL,
-        verbose_name='Подтип товара',
+        verbose_name='Тип товара',
         blank=True,
         null=True
     )

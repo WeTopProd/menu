@@ -27,6 +27,7 @@ class GoodsSerializer(serializers.ModelSerializer):
             'images',
             'count',
             'type',
+            'subtype',
             'is_favorited',
             'is_in_shopping_cart',
         )
@@ -60,6 +61,7 @@ class ShortGoodsSerializer(serializers.ModelSerializer):
             'images',
             'count',
             'type',
+            'subtype'
         )
 
 
@@ -87,7 +89,7 @@ class FavoriteSerializer(serializers.ModelSerializer):
             validators.UniqueTogetherValidator(
                 queryset=Favorite.objects.all(),
                 fields=('user', 'goods'),
-                message='Кий уже добавлен в избранное'
+                message='Товар уже добавлен в избранное'
             )
         ]
 

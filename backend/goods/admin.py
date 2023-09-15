@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Goods, Image, Order
+from .models import Goods, Image, Order, GoodsType, GoodsSubtype
 
 
 class PostImageAdmin(admin.StackedInline):
@@ -12,15 +12,14 @@ class GoodsAdmin(admin.ModelAdmin):
     list_display = (
         'pk',
         'title',
-        'compound',
-        'weight',
-        'calories',
+        'type',
+        'subtype',
         'price',
     )
     inlines = [PostImageAdmin]
     ordering = ('title', )
-    search_fields = ('title', 'price', 'type',)
-    list_filter = ('price', 'type',)
+    search_fields = ('title', 'price', 'type', 'subtype')
+    list_filter = ('price', 'type', 'subtype')
 
 
 @admin.register(Image)
@@ -41,3 +40,7 @@ class OrderAdmin(admin.ModelAdmin):
     ordering = ('-order_date',)
     search_fields = ('user',)
     list_filter = ('order_date', 'total_price',)
+
+
+admin.site.register(GoodsType)
+admin.site.register(GoodsSubtype)

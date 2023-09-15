@@ -13,56 +13,58 @@ class Image(models.Model):
         "Goods",
         related_name='images',
         on_delete=models.CASCADE,
-        verbose_name='Блюдо'
+        verbose_name='товар'
     )
 
+    class Meta:
+        verbose_name = 'Изображение товара'
+        verbose_name_plural = 'Изображения товаров'
+
     def __str__(self):
-        return f'Картинка #{self.pk} для блюда {self.goods.title}'
+        return f'Картинка #{self.pk} для товара {self.goods.title}'
+
+
+class GoodsType(models.Model):
+    name = models.CharField(max_length=50, verbose_name='Название типа товара')
+
+    class Meta:
+        verbose_name = 'Тип товара'
+        verbose_name_plural = 'Типы товаров'
+
+    def __str__(self):
+        return self.name
+
+
+class GoodsSubtype(models.Model):
+    name = models.CharField(
+        max_length=50,
+        verbose_name='Название подтипа товара'
+    )
+
+    class Meta:
+        verbose_name = 'Подтип товара'
+        verbose_name_plural = 'Подтипы товаров'
+
+    def __str__(self):
+        return self.name
 
 
 class Goods(models.Model):
-    DISH_TYPE = (
-        ('hot_dishes', 'Горячие блюда'),
-        ('paste', 'Паста'),
-        ('salads', 'Салаты'),
-        ('side_dishes', 'Гарниры'),
-        ('pizza', 'Пицца'),
-        ('burgers', 'Бургеры'),
-        ('dessert', 'Десерты'),
-        ('drinks', 'Напитки'),
-        ('khachapuri', 'Хачапури'),
-        ('ossetian_pies', 'Осетинские пироги'),
-        ('sauces', 'Соусы'),
-        ('dishes_grill', 'Блюда на мангале'),
-        ('rolls', 'Роллы'),
-        ('mini_rolls', 'Мини роллы'),
-        ('beer_snacks', 'Пивные закуски'),
-        ('bread', 'Хлеб'),
-        ('wok', 'Вок'),
-        ('children_menu', 'Детское меню'),
-        ('seasonal_dishes', 'Сезонные блюда'),
-        ('snacks', 'Закуски'),
-        ('soups', 'Супы')
-    )
-    PROMO_GOODS = (
-        ('promotion', 'Акция'),
-        ('recommend', 'Рекомендуем'),
-    )
     title = models.CharField(
         max_length=355,
-        verbose_name='Название блюда'
+        verbose_name='Название товара'
     )
     description = models.CharField(
         max_length=355,
-        verbose_name='Описание блюда'
+        verbose_name='Описание товара'
     )
     compound = models.CharField(
         max_length=500,
-        verbose_name='Состав блюда'
+        verbose_name='Состав товара'
     )
-    weight = models.IntegerField('Вес блюда')
+    weight = models.IntegerField('Вес товара')
     calories = models.IntegerField('Калорийность')
-    price = models.IntegerField('Цена блюда')
+    price = models.IntegerField('Цена товара')
     image = models.ManyToManyField(
         Image,
         blank=True,
@@ -70,30 +72,30 @@ class Goods(models.Model):
     )
     count = models.IntegerField(
         default=1,
-        verbose_name='Количество блюда'
+        verbose_name='Количество товара'
     )
-    type = models.CharField(
-        'Тип блюда',
-        max_length=50,
-        choices=DISH_TYPE,
+    type = models.ForeignKey(
+        GoodsType,
+        on_delete=models.SET_NULL,
+        verbose_name='Тип товара',
         blank=True,
         null=True
     )
-    promotion = models.CharField(
-        'Акция блюда',
-        max_length=50,
-        choices=PROMO_GOODS,
+    subtype = models.ForeignKey(
+        GoodsSubtype,
+        on_delete=models.SET_NULL,
+        verbose_name='Подтип товара',
         blank=True,
         null=True
     )
 
     class Meta:
-        verbose_name = 'Блюдо'
-        verbose_name_plural = 'Блюда'
+        verbose_name = 'Товар'
+        verbose_name_plural = 'Товары'
         ordering = ['title']
 
     def __str__(self):
-        return f'Блюдо {self.title}'
+        return f'Товар {self.title}'
 
 
 class Favorite(models.Model):
@@ -137,9 +139,9 @@ class ShoppingCart(models.Model):
     )
     count = models.IntegerField(
         default=1,
-        verbose_name='Количество блюд'
+        verbose_name='Количество товар'
     )
-    price = models.IntegerField('Цена блюда')
+    price = models.IntegerField('Цена товара')
 
     class Meta:
         verbose_name = 'Покупка'

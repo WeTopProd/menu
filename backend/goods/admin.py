@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from .models import Goods, Image, Order, GoodsType, GoodsSubtype
+from .models import (Goods, GoodsSubtype, GoodsType, HookahAdditive,
+                     HookahTobacco, HookahType, Image, Order)
 
 
 class PostImageAdmin(admin.StackedInline):
@@ -44,3 +45,6 @@ class OrderAdmin(admin.ModelAdmin):
 
 admin.site.register(GoodsType)
 admin.site.register(GoodsSubtype)
+admin.site.register(HookahTobacco)
+admin.site.register(HookahType)
+admin.site.register(HookahAdditive)

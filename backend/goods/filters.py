@@ -1,7 +1,6 @@
-from django_filters.rest_framework import (FilterSet, filters, RangeFilter,
-                                           ChoiceFilter)
+from django_filters.rest_framework import FilterSet, filters, RangeFilter
 
-from .models import Goods, GoodsType, GoodsSubtype
+from .models import Goods, GoodsType, GoodsSubtype, HookahType
 
 
 class GoodsFilter(FilterSet):
@@ -36,6 +35,11 @@ class GoodsFilter(FilterSet):
         field_name='subtype',
         to_field_name='name'
     )
+    hookah_type = filters.ModelChoiceFilter(
+        queryset=HookahType.objects.all(),
+        field_name='hookah_type',
+        to_field_name='name'
+    )
     is_favorited = filters.BooleanFilter(method='get_is_favorited')
     is_in_shopping_cart = filters.BooleanFilter(
         method='get_is_in_shopping_cart'
@@ -57,6 +61,7 @@ class GoodsFilter(FilterSet):
             'price',
             'type',
             'subtype',
+            'hookah_type',
             'is_favorited',
             'is_in_shopping_cart'
         )

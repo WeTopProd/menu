@@ -25,7 +25,21 @@ class Image(models.Model):
 
 
 class GoodsType(models.Model):
-    name = models.CharField(max_length=50, verbose_name='Название типа товара')
+    name = models.CharField(max_length=50, verbose_name='Название типа меню')
+
+    class Meta:
+        verbose_name = 'Тип меню'
+        verbose_name_plural = 'Типы меню'
+
+    def __str__(self):
+        return self.name
+
+
+class GoodsSubtype(models.Model):
+    name = models.CharField(
+        max_length=50,
+        verbose_name='Название типа товара'
+    )
 
     class Meta:
         verbose_name = 'Тип товара'
@@ -35,15 +49,43 @@ class GoodsType(models.Model):
         return self.name
 
 
-class GoodsSubtype(models.Model):
+class HookahType(models.Model):
     name = models.CharField(
         max_length=50,
-        verbose_name='Название подтипа товара'
+        verbose_name='Название типа кальяна'
     )
 
     class Meta:
-        verbose_name = 'Подтип товара'
-        verbose_name_plural = 'Подтипы товаров'
+        verbose_name = 'Тип кальяна'
+        verbose_name_plural = 'Типы кальянов'
+
+    def __str__(self):
+        return self.name
+
+
+class HookahTobacco(models.Model):
+    name = models.CharField(
+        max_length=50,
+        verbose_name='Название типа табака'
+    )
+
+    class Meta:
+        verbose_name = 'Тип табакаа'
+        verbose_name_plural = 'Типы табаков'
+
+    def __str__(self):
+        return self.name
+
+
+class HookahAdditive(models.Model):
+    name = models.CharField(
+        max_length=50,
+        verbose_name='Название типа добавок для кальяна'
+    )
+
+    class Meta:
+        verbose_name = 'Тип добавки для кальяна'
+        verbose_name_plural = 'Типы добавок для кальяна'
 
     def __str__(self):
         return self.name
@@ -85,6 +127,27 @@ class Goods(models.Model):
         GoodsSubtype,
         on_delete=models.SET_NULL,
         verbose_name='Тип товара',
+        blank=True,
+        null=True
+    )
+    hookah_type = models.ForeignKey(
+        HookahType,
+        on_delete=models.SET_NULL,
+        verbose_name='Тип кальяна',
+        blank=True,
+        null=True
+    )
+    tobacco_type = models.ForeignKey(
+        HookahTobacco,
+        on_delete=models.SET_NULL,
+        verbose_name='Тип табака',
+        blank=True,
+        null=True
+    )
+    additive_type = models.ForeignKey(
+        HookahAdditive,
+        on_delete=models.SET_NULL,
+        verbose_name='Тип добавки для кальяна',
         blank=True,
         null=True
     )

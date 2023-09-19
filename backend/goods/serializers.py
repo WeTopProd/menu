@@ -116,8 +116,6 @@ class ShortGoodsSerializer(serializers.ModelSerializer):
             'type',
             'subtype',
             'hookah_type',
-            'tobacco_type',
-            'additive_type',
         )
 
 
@@ -158,7 +156,7 @@ class FavoriteSerializer(serializers.ModelSerializer):
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
-    goods = GoodsSerializer()
+    goods = ShortGoodsSerializer()
 
     class Meta:
         model = OrderItem
@@ -176,12 +174,10 @@ class OrderSerializer(serializers.ModelSerializer):
             'user',
             'order_date',
             'total_price',
-            'cutlery',
-            'delivery_cost',
-            'fio',
-            'email',
-            'address',
-            'delivery_time',
-            'payment_method',
+            'num_table',
+            'num_person',
+            'comment',
+            'tobacco_type',
+            'additive_type',
             'items'
         )

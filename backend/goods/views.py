@@ -101,40 +101,33 @@ class GoodsViewSet(viewsets.ModelViewSet):
             return Response({'error': 'Корзина пуста!'},
                             status=status.HTTP_400_BAD_REQUEST)
 
-        total_price = 0
-        cutlery = request.data.get('cutlery', 1)
-        delivery_cost = request.data.get('delivery_cost', 100)
-        fio = request.data.get('fio', '')
-        email = request.data.get('email', '')
-        address = request.data.get('address', '')
-        delivery_time = request.data.get('delivery_time', '')
-        payment_method = request.data.get('payment_method', '')
-        if (not fio or not email or not address
-                or not delivery_time or not payment_method):
+        total_price = request.data.get('total_price', '')
+        num_table = request.data.get('num_table', '')
+        num_person = request.data.get('num_person', '')
+        comment = request.data.get('comment', '')
+        tobacco_type = request.data.get('tobacco_type', '')
+        additive_type = request.data.get('additive_type', '')
+        if (not tobacco_type or not num_table
+                or not num_person or not comment):
             return Response(
                 {'error': 'Отсутствуют обязательные поля в запросе'},
                 status=status.HTTP_400_BAD_REQUEST)
         order_items_to_create = []
 
         for item in shopping_cart:
-            total_price += item.price
             order_items_to_create.append(
                 OrderItem(order=None, goods=item.goods, count=item.count,
                           price=item.price))
-
-        total_price += delivery_cost
 
         with transaction.atomic():
             order = Order.objects.create(
                 user=user,
                 total_price=total_price,
-                delivery_cost=delivery_cost,
-                cutlery=cutlery,
-                fio=fio,
-                email=email,
-                address=address,
-                delivery_time=delivery_time,
-                payment_method=payment_method
+                num_table=num_table,
+                num_person=num_person,
+                comment=comment,
+                tobacco_type=tobacco_type,
+                additive_type=additive_type,
             )
 
             for order_item in order_items_to_create:

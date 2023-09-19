@@ -226,18 +226,11 @@ class Order(models.Model):
     goods = models.ManyToManyField(Goods, through='OrderItem')
     order_date = models.DateTimeField('Дата заказа', auto_now_add=True)
     total_price = models.IntegerField('Итоговая цена')
-    cutlery = models.IntegerField('Столовые приборы')
-    delivery_cost = models.IntegerField('Цена доставки')
-    fio = models.CharField('Ф.И.О.', max_length=255)
-    email = models.EmailField(
-        db_index=True,
-        max_length=255,
-        verbose_name='Почта',
-        validators=[validate_email],
-    )
-    address = models.CharField('Адрес доставки', max_length=255)
-    delivery_time = models.CharField('Время доставки', max_length=50)
-    payment_method = models.CharField('Метод оплаты', max_length=100)
+    num_table = models.IntegerField('Номер стола')
+    num_person = models.IntegerField('Количество персон')
+    comment = models.TextField('Комментарий к заказу')
+    tobacco_type = models.CharField('Тип табака', max_length=50)
+    additive_type = models.CharField('Тип добавки для кальяна', max_length=50)
 
     class Meta:
         verbose_name = 'Заказ'

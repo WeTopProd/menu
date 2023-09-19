@@ -1,6 +1,6 @@
 from rest_framework import serializers, validators
 
-from .models import Goods, Favorite, ShoppingCart, Image, Order, OrderItem
+from .models import Goods, GoodsType, GoodsSubtype, HookahAdditive, HookahTobacco, Favorite, ShoppingCart, Image, Order, OrderItem, HookahType
 
 
 class ImageSerializer(serializers.ModelSerializer):
@@ -9,10 +9,45 @@ class ImageSerializer(serializers.ModelSerializer):
         fields = ('images', )
 
 
+class GoodsTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GoodsType
+        fields = ('name', )
+
+
+class GoodsSubtypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GoodsSubtype
+        fields = ('name', )
+
+
+class HookahTobaccoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HookahTobacco
+        fields = ('name', )
+
+
+class HookahAdditiveSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HookahAdditive
+        fields = ('name', )
+
+
+class HookahTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HookahType
+        fields = ('name', )
+
+
 class GoodsSerializer(serializers.ModelSerializer):
     images = ImageSerializer(many=True, read_only=True)
     is_favorited = serializers.SerializerMethodField()
     is_in_shopping_cart = serializers.SerializerMethodField()
+    type = serializers.SerializerMethodField()
+    subtype = serializers.SerializerMethodField()
+    hookah_type = serializers.SerializerMethodField()
+    tobacco_type = serializers.StringRelatedField(many=True)
+    additive_type = serializers.StringRelatedField(many=True)
 
     class Meta:
         model = Goods
@@ -46,6 +81,21 @@ class GoodsSerializer(serializers.ModelSerializer):
 
     def get_is_in_shopping_cart(self, obj):
         return self.in_list(obj, ShoppingCart)
+
+    def get_type(self, obj):
+        if obj.type:
+            return GoodsTypeSerializer(obj.type).data['name']
+        return None
+
+    def get_subtype(self, obj):
+        if obj.type:
+            return GoodsSubtypeSerializer(obj.subtype).data['name']
+        return None
+
+    def get_hookah_type(self, obj):
+        if obj.hookah_type:
+            return HookahTypeSerializer(obj.hookah_type).data['name']
+        return None
 
 
 class ShortGoodsSerializer(serializers.ModelSerializer):

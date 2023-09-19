@@ -137,19 +137,15 @@ class Goods(models.Model):
         blank=True,
         null=True
     )
-    tobacco_type = models.ForeignKey(
+    tobacco_type = models.ManyToManyField(
         HookahTobacco,
-        on_delete=models.SET_NULL,
         verbose_name='Тип табака',
         blank=True,
-        null=True
     )
-    additive_type = models.ForeignKey(
+    additive_type = models.ManyToManyField(
         HookahAdditive,
-        on_delete=models.SET_NULL,
         verbose_name='Тип добавки для кальяна',
         blank=True,
-        null=True
     )
 
     class Meta:

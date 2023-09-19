@@ -28,6 +28,9 @@ class GoodsSerializer(serializers.ModelSerializer):
             'count',
             'type',
             'subtype',
+            'hookah_type',
+            'tobacco_type',
+            'additive_type',
             'is_favorited',
             'is_in_shopping_cart',
         )
@@ -61,7 +64,10 @@ class ShortGoodsSerializer(serializers.ModelSerializer):
             'images',
             'count',
             'type',
-            'subtype'
+            'subtype',
+            'hookah_type',
+            'tobacco_type',
+            'additive_type',
         )
 
 

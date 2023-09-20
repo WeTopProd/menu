@@ -20,7 +20,7 @@ class GoodsTypeSerializer(serializers.ModelSerializer):
 class GoodsSubtypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = GoodsSubtype
-        fields = ('name', 'image')
+        fields = ('name', 'image', 'type')
 
 
 class HookahTobaccoSerializer(serializers.ModelSerializer):

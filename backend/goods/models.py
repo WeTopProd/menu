@@ -39,6 +39,10 @@ class GoodsSubtype(models.Model):
         max_length=50,
         verbose_name='Название типа товара'
     )
+    image = models.ImageField(
+        upload_to='backend_media/',
+        verbose_name='Изображение'
+    )
 
     class Meta:
         verbose_name = 'Тип товара'

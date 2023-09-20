@@ -18,9 +18,16 @@ class GoodsTypeSerializer(serializers.ModelSerializer):
 
 
 class GoodsSubtypeSerializer(serializers.ModelSerializer):
+    type = serializers.SerializerMethodField()
+
     class Meta:
         model = GoodsSubtype
         fields = ('name', 'image', 'type')
+
+    def get_type(self, obj):
+        if obj.type:
+            return GoodsTypeSerializer(obj.type).data['name']
+        return None
 
 
 class HookahTobaccoSerializer(serializers.ModelSerializer):

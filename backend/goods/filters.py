@@ -70,3 +70,15 @@ class GoodsFilter(FilterSet):
         if self.request.user.is_authenticated and value is True:
             return queryset.filter(users_favorites__user=self.request.user)
         return queryset
+
+
+class GoodsSubtypeFilter(FilterSet):
+    type = filters.CharFilter(
+        field_name='type__name',
+        lookup_expr='icontains',
+        label='Тип меню'
+    )
+
+    class Meta:
+        model = GoodsSubtype
+        fields = ['type']

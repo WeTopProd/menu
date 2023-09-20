@@ -7,7 +7,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.validators import ValidationError
 
-from .filters import GoodsFilter
+from .filters import GoodsFilter, GoodsSubtypeFilter
 from .models import (Favorite, Goods, GoodsSubtype, GoodsType, Order,
                      OrderItem, ShoppingCart)
 from .pagination import CustomPagination
@@ -35,9 +35,11 @@ class GoodsViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['GET'])
     def get_goods_subtypes(self, request):
-        goods_subtypes = GoodsSubtype.objects.all()
-        serializer = GoodsSubtypeSerializer(goods_subtypes,
-                                            many=True)
+        queryset = GoodsSubtype.objects.all()
+        filterset = GoodsSubtypeFilter(request.GET, queryset=queryset)
+        filtered_subtypes = filterset.qs
+
+        serializer = GoodsSubtypeSerializer(filtered_subtypes, many=True)
         return Response(serializer.data)
 
     @action(

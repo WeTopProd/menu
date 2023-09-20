@@ -14,17 +14,13 @@ class ImageSerializer(serializers.ModelSerializer):
 class GoodsTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = GoodsType
-
-    def to_representation(self, instance):
-        return instance.name
+        fields = ('name', )
 
 
 class GoodsSubtypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = GoodsSubtype
-
-    def to_representation(self, instance):
-        return instance.name
+        fields = ('name', 'image')
 
 
 class HookahTobaccoSerializer(serializers.ModelSerializer):
@@ -49,6 +45,8 @@ class GoodsSerializer(serializers.ModelSerializer):
     images = ImageSerializer(many=True, read_only=True)
     is_favorited = serializers.SerializerMethodField()
     is_in_shopping_cart = serializers.SerializerMethodField()
+    type = serializers.SerializerMethodField()
+    subtype = serializers.SerializerMethodField()
     hookah_type = serializers.SerializerMethodField()
     tobacco_type = serializers.StringRelatedField(many=True)
     additive_type = serializers.StringRelatedField(many=True)
@@ -85,6 +83,15 @@ class GoodsSerializer(serializers.ModelSerializer):
 
     def get_is_in_shopping_cart(self, obj):
         return self.in_list(obj, ShoppingCart)
+
+    def get_type(self, obj):
+        if obj.type:
+            return GoodsTypeSerializer(obj.type).data['name']
+        return None
+
+    def get_subtype(self, obj):
+        if obj.subtype:
+            return GoodsSubtypeSerializer(obj.subtype).data['name']
 
     def get_hookah_type(self, obj):
         if obj.hookah_type:

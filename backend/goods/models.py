@@ -41,7 +41,8 @@ class GoodsSubtype(models.Model):
     )
     image = models.ImageField(
         upload_to='backend_media/',
-        verbose_name='Изображение'
+        verbose_name='Изображение',
+        blank=True
     )
 
     class Meta:

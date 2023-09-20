@@ -44,6 +44,13 @@ class GoodsSubtype(models.Model):
         verbose_name='Изображение',
         blank=True
     )
+    type = models.ForeignKey(
+        GoodsType,
+        on_delete=models.SET_NULL,
+        verbose_name='Тип меню',
+        blank=True,
+        null=True
+    )
 
     class Meta:
         verbose_name = 'Тип товара'

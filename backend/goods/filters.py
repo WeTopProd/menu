@@ -1,6 +1,6 @@
-from django_filters.rest_framework import FilterSet, filters, RangeFilter
+from django_filters.rest_framework import FilterSet, RangeFilter, filters
 
-from .models import Goods, GoodsType, GoodsSubtype, HookahType
+from .models import Goods, GoodsSubtype, GoodsType, HookahType
 
 
 class GoodsFilter(FilterSet):

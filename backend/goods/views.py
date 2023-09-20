@@ -1,19 +1,21 @@
+from django.db import transaction
 from django.shortcuts import get_object_or_404
-from rest_framework import status, views, viewsets
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import status, views, viewsets
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.validators import ValidationError
 from rest_framework.response import Response
-from django.db import transaction
+from rest_framework.validators import ValidationError
 
-from .pagination import CustomPagination
 from .filters import GoodsFilter
-from .models import Goods, ShoppingCart, Favorite, Order, OrderItem
+from .models import (Favorite, Goods, GoodsSubtype, GoodsType, Order,
+                     OrderItem, ShoppingCart)
+from .pagination import CustomPagination
 from .permissions import IsAdminOrReadOnly
-from .serializers import (GoodsSerializer, ShortGoodsSerializer,
-                          FavoriteSerializer, ShoppingCartSerializer,
-                          OrderSerializer)
+from .serializers import (FavoriteSerializer, GoodsSerializer,
+                          GoodsSubtypeSerializer, GoodsTypeSerializer,
+                          OrderSerializer, ShoppingCartSerializer,
+                          ShortGoodsSerializer)
 
 
 class GoodsViewSet(viewsets.ModelViewSet):
@@ -23,6 +25,20 @@ class GoodsViewSet(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend,)
     filterset_class = GoodsFilter
     serializer_class = GoodsSerializer
+
+    @action(detail=False, methods=['GET'])
+    def get_goods_types(self, request):
+        goods_types = GoodsType.objects.all()
+        serializer = GoodsTypeSerializer(goods_types,
+                                         many=True)
+        return Response(serializer.data)
+
+    @action(detail=False, methods=['GET'])
+    def get_goods_subtypes(self, request):
+        goods_subtypes = GoodsSubtype.objects.all()
+        serializer = GoodsSubtypeSerializer(goods_subtypes,
+                                            many=True)
+        return Response(serializer.data)
 
     @action(
         detail=True,

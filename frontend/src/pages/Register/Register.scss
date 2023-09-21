@@ -1,10 +1,11 @@
 .registration {
   padding: 0 13px;
-  min-height: 723px;
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   background: url("../../assets/images/Login/reg.png") center no-repeat;
+  background-size: cover;
 
   &__container {
     max-width: 387px;
@@ -54,14 +55,14 @@
 
       &_login {
         gap: 15px;
-        max-width: 300px!important;
+        max-width: 300px !important;
         width: 100%;
         margin-top: 6px;
 
         input {
           min-height: 39.8px;
-          max-width: 300px!important;
-          padding: 0 19px!important;
+          max-width: 300px !important;
+          padding: 0 19px !important;
         }
       }
 
@@ -144,7 +145,7 @@
 
 //media
 
-@media  screen and (max-width: 385px) {
+@media screen and (max-width: 385px) {
   .registration__container_signIn {
     flex-direction: column;
 

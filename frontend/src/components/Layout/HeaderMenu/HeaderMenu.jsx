@@ -3,7 +3,10 @@ import './HeaderMenu.scss'
 import IconMenu from '../../../assets/images/menu/iconMenu.png'
 import {Link} from "react-router-dom";
 
-const HeaderMenu = ({menu,setMenu}) => {
+const HeaderMenu = ({menu, setMenu}) => {
+    const closeModal = () => {
+        setMenu(false)
+    }
 
     return (
         <div className="menu">
@@ -12,8 +15,9 @@ const HeaderMenu = ({menu,setMenu}) => {
                 src={IconMenu}
                 alt="iconMenu"
             />
-            <div className={menu ? "popupMenu" : ""}>
-                <div className={!menu ? "menu__items" : "menu__items_active menu__items"}>
+            <div onClick={closeModal} className={"menu__container" + (!menu ? " menu__container-hidden" : "")}>
+                <div className={"menu__items"}
+                     onClick={e => e.stopPropagation()}>
                     <Link to={"/stock"}>
                         <p>Акции</p>
                     </Link>

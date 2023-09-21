@@ -5,6 +5,20 @@
   margin-top: 10px;
   cursor: pointer;
 
+  .menu__container {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transition: .5s;
+  }
+
+  .menu__container.menu__container-hidden {
+    left: -100vw;
+    transition: .5s;
+  }
+
   &__items {
     display: flex;
     padding: 9px 38px 9px 12px;
@@ -12,14 +26,12 @@
     justify-content: center;
     align-items: flex-start;
     position: absolute;
-    left: -183px;
     top: 0;
-    opacity: 0;
-    margin-top: 79px;
+    left: 0;
+    margin-top: 80px;
     gap: 30px;
     border-radius: 0px 10px 10px 0px;
     background: url('../../../assets/images/menu/PopupMenu.png'), lightgray 50% / cover no-repeat;
-    transition: .5s;
 
     a {
       text-align: start;
@@ -28,19 +40,5 @@
     p {
       color: white;
     }
-
-    &_active {
-      left: 0px;
-      opacity: 1;
-      margin-top: 80px;
-    }
   }
-}
-
-.popupMenu {
-  width: 414px;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
 }

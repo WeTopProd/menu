@@ -33,15 +33,15 @@ const Login = () => {
     }
 
     return (
-        <div className="registration">
+        <div className="login">
             {
                 isLogin
                     ? <RegisterActive desc="Вы успешно зарегистрировались"/>
-                    : <div className={"registration__container registration__container_login"}>
-                        <h3 className={"registration__container_title registration__container_title_login"}>
+                    : <div className={"login__container login__container_login"}>
+                        <h3 className={"login__container_title login__container_title_login"}>
                             Вход в личный кабинет
                         </h3>
-                        <div className={"registration__container_inputs registration__container_inputs_login"}>
+                        <div className={"login__container_inputs login__container_inputs_login"}>
                             <input
                                 value={state.login}
                                 onChange={e => setData("login", e)}
@@ -55,12 +55,12 @@ const Login = () => {
                                 placeholder="Пароль"
                             />
                         </div>
-                        <div className={"registration__container_signIn registration__container_signIn_login"}>
+                        <div className={"login__container_signIn login__container_signIn_login"}>
                             <p>Еще нет аккаунта?</p>
                             <Link to={"/register"}>Зарегистрируйтесь!</Link>
                         </div>
                         <button onClick={loginAction}
-                                className={"registration__container_button registration__container_button_login"}
+                                className={"login__container_button login__container_button_login"}
                         >
                             Войти
                         </button>

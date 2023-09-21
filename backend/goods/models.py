@@ -39,7 +39,12 @@ class GoodsSubtype(models.Model):
         max_length=50,
         verbose_name='Название типа товара'
     )
-    image = models.ImageField(
+    icon = models.ImageField(
+        upload_to='backend_media/',
+        verbose_name='Изображение',
+        blank=True
+    )
+    gif = models.ImageField(
         upload_to='backend_media/',
         verbose_name='Изображение',
         blank=True

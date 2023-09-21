@@ -22,7 +22,7 @@ class GoodsSubtypeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = GoodsSubtype
-        fields = ('name', 'image', 'type')
+        fields = ('name', 'icon', 'gif', 'type')
 
     def get_type(self, obj):
         if obj.type:

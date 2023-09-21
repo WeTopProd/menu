@@ -23,7 +23,8 @@ const HookahElement = ({type}) => {
                         <div className="hookahElement__block_desc">
                             <p className="hookahElement__block_desc_subtitle">Выбрать табак</p>
                             {
-                                good.tobacco_type.map((tobacco_type, idc)=><div key={idc} className="hookahElement__block_desc_item">
+                                good.tobacco_type.map((tobacco_type, idc) => <div key={idc}
+                                                                                  className="hookahElement__block_desc_item">
                                     <img src={Line} alt="icon"/>
                                     <p>{tobacco_type}</p>
                                 </div>)
@@ -35,7 +36,12 @@ const HookahElement = ({type}) => {
                         <div className="hookahElement__block_price">
                             <p>{good.price} руб.</p>
                         </div>
-                        <img className="hookahElement__block_image" src={getImage(good.images)} alt="icon"/>
+                        {
+                            good.images.length > 0 && good.images[0].images != null ?
+                                <img className="hookahElement__block_image" src={getImage(good.images)} alt="icon"/>
+                                : ''
+                        }
+
                     </div>)
             }
 

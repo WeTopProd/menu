@@ -7,13 +7,15 @@ const Hookah = () => {
     const [types, setTypes] = useState([]);
 
     useEffect(() => {
-       /* api.goodsApi.getGoodsSubTypes({type: "Кальянная карта", subtype: "Кальян"}).then(resp => {
-            setTypes(resp.data)
-        })*/
-        setTypes([
-            {type: "Классика"},
-            {type: "Вая"},
-        ])
+        api.goodsApi.getList({type: "Кальянная карта", subtype: "Кальян"}).then(res => {
+            const data = res.data.results.reduce((prev, next)=>{
+                return {
+                    ...prev,
+                    [next.hookah_type]: ''
+                }
+            }, {})
+            setTypes(Object.keys(data))
+        })
     }, []);
 
     return (
@@ -21,7 +23,7 @@ const Hookah = () => {
             <div className="hookah__container">
                 <p className="hookah__container_title">Кальянная карта</p>
                 {types.map((type, idx) =>
-                    <HookahElement key={idx} type={type.type}/>
+                    <HookahElement key={idx} type={type}/>
                 )}
             </div>
         </div>

@@ -86,4 +86,4 @@ class GoodsSubtypeFilter(FilterSet):
 
     class Meta:
         model = GoodsSubtype
-        fields = ['type']
+        fields = ['type', 'name']

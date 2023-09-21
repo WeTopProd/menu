@@ -1,0 +1,63 @@
+.personalAreaModal {
+  width: 414px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100000;
+
+  &__title {
+    display: flex;
+    align-items: center;
+
+    img {
+      margin: 10px 0 0 7px;
+
+    }
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding-right: 16px;
+    min-width: 198px;
+    height: 263px;
+    position: fixed;
+    opacity: 0;
+    right: -217px;
+    top: 80px;
+    border-radius: 11px 0 0 11px;
+    background: url('../../assets/images/PersonalArea/popupMenu1.png'), lightgray 50% / cover no-repeat;
+    background-size: cover;
+    transition: .5s;
+
+    &_name {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      padding-left: 10px;
+      gap: 13px;
+    }
+
+    &__active {
+      right: 0;
+      opacity: 1;
+    }
+
+    h3 {
+      color: #FFF;
+      font-size: 23px;
+      font-weight: 400;
+      text-transform: capitalize;
+      text-align: center;
+      margin: 9px 0 1px 0;
+    }
+
+    &_line {
+      width: 108%;
+      height: 3px;
+      background: #FFF;
+    }
+  }
+}

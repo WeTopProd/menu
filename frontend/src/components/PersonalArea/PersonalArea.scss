@@ -1,0 +1,40 @@
+.personalArea {
+  padding-left: 12px;
+
+  p {
+    color: #FFF;
+    font-size: 10px;
+    margin-top: 18px;
+  }
+
+  &__edit {
+    display: flex;
+    justify-content: space-between;
+    max-width: 170px;
+    align-items: center;
+
+    a {
+      width: 5%;
+    }
+
+    img {
+      margin-top: 17px;
+    }
+
+    &_name {
+
+    }
+  }
+
+  &__lastname {
+
+  }
+
+  &__phone {
+
+  }
+
+  &__gmail {
+
+  }
+}

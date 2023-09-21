@@ -1,0 +1,43 @@
+.banquet {
+  background: url("../../assets/images/banquet/background.png") center no-repeat;
+  background-size: cover;
+  padding: 23px 15px 15px 15px;
+  flex: 1;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    a {
+      max-width: 380px;
+    }
+
+    &_item {
+      max-width: 380px;
+      width: 100%;
+      min-height: 70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.80);
+
+      &_desc {
+        color: #FFF;
+        font-size: 30px;
+        text-transform: capitalize;
+      }
+    }
+  }
+}
+
+
+//media
+
+@media screen and (max-width: 380px) {
+  .banquet__container_item_desc {
+    font-size: 25px;
+  }
+}

@@ -1,0 +1,29 @@
+.basketBtn {
+  display: flex;
+  justify-content: center;
+  margin-top: 14px;
+
+  button {
+    padding: 5px 19px;
+    border-radius: 6.788px;
+    background: #0E3F16;
+    border: none;
+    box-shadow: 0 2.545454502105713px 8.484848976135254px 0 rgba(0, 0, 0, 0.15);
+  }
+}
+
+.basketBtnActive {
+
+  button {
+    border-radius: 6.788px;
+    background: #0E3F16;
+    border: none;
+    padding: 4px 12px;
+    box-shadow: 0 2.54545px 8.48485px 0 rgba(0, 0, 0, 0.15);
+
+    p {
+      color: #FFF;
+      font-size: 15px;
+    }
+  }
+}

@@ -1,0 +1,62 @@
+.bar {
+  background: url("../../assets/gif/bar/bar.gif") center;
+  background-size: cover;
+  padding: 23px 15px 15px 15px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  &__container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    &_items{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      justify-content: space-between;
+    }
+    a {
+      max-width: 380px;
+    }
+
+    img {
+      margin-top: 42px;
+    }
+
+    &_item {
+      max-width: 380px;
+      width: 100%;
+      min-height: 70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+      background: linear-gradient(0deg, rgba(23, 23, 23, 0.60) 0%, rgba(23, 23, 23, 0.60) 100%), rgba(255, 255, 255, 0.20);
+
+
+      &_desc {
+        color: #FFF;
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-transform: capitalize;
+      }
+    }
+  }
+}
+
+
+//media
+
+@media screen and (max-width: 380px) {
+  .bar__container_item_desc {
+    font-size: 25px;
+  }
+}

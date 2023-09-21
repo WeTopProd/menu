@@ -1,0 +1,87 @@
+.preorder {
+  background: url("../../assets/images/preorder/backgroundPreorder.png") center no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 566px;
+  padding: 95px 15px 76px 15px;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 34px;
+
+    p {
+      color: #FFF;
+      font-family: Prosto One;
+      font-size: 30px;
+      font-style: normal;
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: -5px;
+      margin-left: -6px;
+    }
+
+    div {
+      display: flex;
+      flex-direction: column;
+
+      input {
+        max-width: 329px;
+        border: none;
+        background: none;
+        color: #FFF;
+        font-family: Prosto One;
+        font-size: 25px;
+        padding-top: 1px;
+        font-weight: 400;
+        margin-left: -8px;
+        height: 19px;
+        text-transform: capitalize;
+        outline: none;
+        border-bottom: 1px white solid;
+
+        &::placeholder {
+          color: #FFF;
+        }
+      }
+    }
+
+    button {
+      display: inline-flex;
+      padding: 10px 25px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      border-radius: 10px;
+      background: #0E3F16;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.69);
+      color: #FFF;
+      font-family: Prosto One;
+      border: none;
+      font-size: 20px;
+      font-weight: 400;
+      margin-top: 23px;
+      margin-left: -8px;
+    }
+  }
+}
+
+.error {
+  font-size: 12px;
+  color: #ff0000;
+  margin-left: -9px;
+}
+
+
+//media
+
+@media screen and (max-width: 360px) {
+  .preorder__container div input {
+    max-width: 280px;
+  }
+}
+
+

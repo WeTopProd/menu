@@ -1,0 +1,78 @@
+.historyOfOrders {
+  display: flex;
+  flex-direction: column;
+  padding-left: 12px;
+  gap: 10px;
+  overflow-y: scroll;
+
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    padding-left: 12px;
+    gap: 10px;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+      background-color: #717171;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #fbfbfb;    /* цвет бегунка */
+      border-radius: 20px;       /* округлось бегунка */
+    }
+  }
+
+  &__title {
+    color: #FFF;
+    font-size: 15px;
+    margin-top: 18px;
+  }
+
+  &__desc {
+    width: 96%;
+    border-radius: 2px;
+    background: rgba(0, 0, 0, 0.50);
+    padding-bottom: 5px;
+
+    p {
+      color: #FFF;
+      font-size: 8px;
+      margin-left: 9px;
+    }
+
+    &_num {
+      font-size: 10px !important;
+      border-bottom: 1px solid;
+      display: inline-block;
+      height: 11px;
+    }
+
+    &_dishPrice {
+      display: flex;
+      margin-top: 5px;
+
+      &_dish {
+
+      }
+
+      &_price {
+
+      }
+    }
+
+    &_line {
+      max-width: 184px;
+      width: 100%;
+      height: 1px;
+      background: #FFF;
+      display: block;
+      margin: 6px 0 3px 0;
+    }
+
+    &_check {
+
+    }
+  }
+}

@@ -1,0 +1,29 @@
+.loginActive {
+  max-width: 370px;
+  width: 100%;
+  margin-top: -120px;
+  border-radius: 31.724px;
+  background: linear-gradient(108deg, rgba(14, 63, 22, 0.85) -53.02%, rgba(14, 63, 22, 0.85) 134.49%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 270.713px;
+
+  p {
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 16.92px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 23.264px;
+    text-transform: uppercase;
+    margin-top: -4px;
+    max-width: 230px;
+  }
+
+  img {
+    margin-top: -27px;
+  }
+}

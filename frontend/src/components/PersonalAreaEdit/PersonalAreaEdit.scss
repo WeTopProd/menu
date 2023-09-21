@@ -1,0 +1,49 @@
+.personalAreaEdit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3px;
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+    width: 100%;
+
+    p {
+      color: #FFF;
+      font-size: 10px;
+      margin-left: 15px;
+    }
+
+    input {
+      width: 106.811px;
+      height: 18.402px;
+      flex-shrink: 0;
+      border-radius: 4.929px;
+      border: 0.329px solid #474747;
+      background: var(--white, #FFF);
+      outline: none;
+      padding: 0 10px 0 13px;
+    }
+  }
+
+  button {
+    display: inline-flex;
+    padding: 6.48px 16.849px;
+    justify-content: center;
+    align-items: center;
+    gap: 3.24px;
+    border-radius: 4.86px;
+    background: #FFF;
+    box-shadow: 0px 1.29607px 9.7205px 0px rgba(0, 0, 0, 0.15);
+    color: #000;
+    text-align: center;
+    font-size: 5.832px;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-top: 30px;
+    border: none;
+  }
+}

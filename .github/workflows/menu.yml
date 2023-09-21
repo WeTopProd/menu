@@ -1,4 +1,4 @@
-name: Menu workflow
+name: HeaderMenu workflow
 
 on:
   push:

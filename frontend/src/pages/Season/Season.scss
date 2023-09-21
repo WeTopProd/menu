@@ -1,0 +1,84 @@
+.season {
+  background: url("../../assets/images/season/background.png") center no-repeat;
+  background-size: cover;
+  padding: 23px 15px 15px 15px;
+  flex: 1;
+
+  &__container {
+
+    &_title {
+      color: #FFF;
+      font-size: 30px;
+      font-weight: 400;
+      text-transform: capitalize;
+      text-align: center;
+    }
+
+    &_items {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 29px;
+
+      &_item {
+        max-width: 166px;
+        width: 100%;
+        min-height: 331px;
+        flex-shrink: 0;
+        border-radius: 15px;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        flex-direction: column;
+        padding: 0 8px;
+
+        &_img {
+          margin-top: 8px;
+        }
+
+        &_desc {
+          display: flex;
+          flex-wrap: nowrap;
+          margin-top: 9px;
+
+          p:first-child {
+            display: block;
+            max-width: 126px;
+            width: 100%;
+          }
+
+          p {
+            color: #FFF;
+            font-size: 12px;
+            line-height: 128%;
+          }
+        }
+
+        &_price {
+          color: #FFF;
+          leading-trim: both;
+          text-edge: cap;
+          font-size: 20px;
+          margin-top: 19px;
+        }
+
+        &_basket {
+          display: flex;
+          justify-content: center;
+          margin-top: 9px;
+
+          button {
+            display: inline-flex;
+            padding: 5px 19px;
+            align-items: flex-start;
+            gap: 8.485px;
+            border-radius: 6.788px;
+            background: #0E3F16;
+            border: none;
+            box-shadow: 0 2.545454502105713px 8.484848976135254px 0 rgba(0, 0, 0, 0.15);
+          }
+        }
+      }
+    }
+  }
+}

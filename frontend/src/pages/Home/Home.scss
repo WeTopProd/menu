@@ -1,0 +1,57 @@
+.home {
+  background: url("../../assets/images/home/background.png") center no-repeat;
+  background-size: cover;
+  padding: 23px 15px 15px 15px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+
+
+    &_item {
+      width: 100%;
+      min-height: 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+      background: linear-gradient(0deg, #000 0%, #000 100%), rgba(255, 255, 255, 0.20);
+      margin-bottom: 20px;
+      cursor: pointer;
+
+      a {
+        flex: 1;
+        color: #FFF;
+        font-size: 30px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-transform: capitalize;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+
+//media
+
+@media screen and (max-width: 370px) {
+  .home {
+    div {
+      p {
+        font-size: 25px;
+      }
+    }
+  }
+}

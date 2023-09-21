@@ -93,6 +93,7 @@ class HookahAdditive(models.Model):
         max_length=50,
         verbose_name='Название типа добавок для кальяна'
     )
+    price = models.IntegerField('Цена добавки для кальяна')
 
     class Meta:
         verbose_name = 'Тип добавки для кальяна'

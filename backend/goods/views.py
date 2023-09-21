@@ -9,13 +9,13 @@ from rest_framework.validators import ValidationError
 
 from .filters import GoodsFilter, GoodsSubtypeFilter
 from .models import (Favorite, Goods, GoodsSubtype, GoodsType, Order,
-                     OrderItem, ShoppingCart)
+                     OrderItem, ShoppingCart, HookahAdditive)
 from .pagination import CustomPagination
 from .permissions import IsAdminOrReadOnly
 from .serializers import (FavoriteSerializer, GoodsSerializer,
                           GoodsSubtypeSerializer, GoodsTypeSerializer,
                           OrderSerializer, ShoppingCartSerializer,
-                          ShortGoodsSerializer)
+                          ShortGoodsSerializer, HookahAdditiveSerializer)
 
 
 class GoodsViewSet(viewsets.ModelViewSet):
@@ -27,19 +27,26 @@ class GoodsViewSet(viewsets.ModelViewSet):
     serializer_class = GoodsSerializer
 
     @action(detail=False, methods=['GET'])
-    def get_goods_types(self, request):
+    def types(self, request):
         goods_types = GoodsType.objects.all()
         serializer = GoodsTypeSerializer(goods_types,
                                          many=True)
         return Response(serializer.data)
 
     @action(detail=False, methods=['GET'])
-    def get_goods_subtypes(self, request):
+    def subtypes(self, request):
         queryset = GoodsSubtype.objects.all()
         filterset = GoodsSubtypeFilter(request.GET, queryset=queryset)
         filtered_subtypes = filterset.qs
 
         serializer = GoodsSubtypeSerializer(filtered_subtypes, many=True)
+        return Response(serializer.data)
+
+    @action(detail=False, methods=['GET'])
+    def additive_type(self, request):
+        additive_types = HookahAdditive.objects.all()
+        serializer = HookahAdditiveSerializer(additive_types,
+                                              many=True)
         return Response(serializer.data)
 
     @action(

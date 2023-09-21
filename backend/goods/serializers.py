@@ -39,7 +39,7 @@ class HookahTobaccoSerializer(serializers.ModelSerializer):
 class HookahAdditiveSerializer(serializers.ModelSerializer):
     class Meta:
         model = HookahAdditive
-        fields = ('name', )
+        fields = ('name', 'price')
 
 
 class HookahTypeSerializer(serializers.ModelSerializer):
@@ -56,7 +56,7 @@ class GoodsSerializer(serializers.ModelSerializer):
     subtype = serializers.SerializerMethodField()
     hookah_type = serializers.SerializerMethodField()
     tobacco_type = serializers.StringRelatedField(many=True)
-    additive_type = serializers.StringRelatedField(many=True)
+    additive_type = serializers.SerializerMethodField()
 
     class Meta:
         model = Goods
@@ -91,6 +91,13 @@ class GoodsSerializer(serializers.ModelSerializer):
     def get_is_in_shopping_cart(self, obj):
         return self.in_list(obj, ShoppingCart)
 
+    def get_additive_type(self, obj):
+        additives = HookahAdditive.objects.filter(
+            id__in=obj.additive_type.all())
+        additive_dict = {additive.name: additive.price for additive in
+                         additives}
+        return additive_dict
+
     def get_type(self, obj):
         if obj.type:
             return GoodsTypeSerializer(obj.type).data['name']
@@ -104,6 +111,11 @@ class GoodsSerializer(serializers.ModelSerializer):
         if obj.hookah_type:
             return HookahTypeSerializer(obj.hookah_type).data['name']
         return None
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        data['additive_type'] = self.get_additive_type(instance)
+        return data
 
 
 class ShortGoodsSerializer(serializers.ModelSerializer):

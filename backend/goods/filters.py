@@ -75,8 +75,13 @@ class GoodsFilter(FilterSet):
 class GoodsSubtypeFilter(FilterSet):
     type = filters.CharFilter(
         field_name='type__name',
-        lookup_expr='icontains',
+        lookup_expr='exact',
         label='Тип меню'
+    )
+    name = filters.CharFilter(
+        field_name='name',
+        lookup_expr='exact',
+        label='Название подтипа'
     )
 
     class Meta:

@@ -41,12 +41,12 @@ class GoodsSubtype(models.Model):
     )
     icon = models.ImageField(
         upload_to='backend_media/',
-        verbose_name='Изображение',
+        verbose_name='Иконка',
         blank=True
     )
     gif = models.ImageField(
         upload_to='backend_media/',
-        verbose_name='Изображение',
+        verbose_name='Гифка',
         blank=True
     )
     type = models.ForeignKey(

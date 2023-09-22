@@ -71,9 +71,9 @@ const BasketBtn = ({id, type, data}) => {
                 </div>
 
             case "text":
-                return <div onClick={addToBasket} className="basketButton__basket basketButton__basket-icon">
+                return <div onClick={addToBasket} className="basketButton__basket basketButton__basket-text">
                     <button>
-                        <img src={BasketIcon} alt=""/>
+                        Добавить в корзину
                     </button>
                 </div>
 

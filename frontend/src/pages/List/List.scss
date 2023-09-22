@@ -25,11 +25,12 @@
   }
 
   &__animation {
-    margin-top: 13px;
+    margin: 13px 0 18px 0;
+    width: 100%;
 
     img {
       border-radius: 48px;
-      max-width: 327px;
+      width: 100%;
     }
   }
 }
@@ -48,18 +49,6 @@
     align-items: center;
     width: 100%;
   }
-
-  .list__animation img {
-    border-radius: 48px;
-    width: 300px;
-  }
-}
-
-@media screen and (max-width: 350px) {
-  .list__animation img {
-    width: 300px;
-  }
-
 }
 
 

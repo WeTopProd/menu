@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import "./Main.scss"
 import {Link} from "react-router-dom";
 import {api} from "../../api";
-import {getImage, getImageWithUrl} from "../../helpers/image";
+import {getImageWithUrl} from "../../helpers/image";
 
 const Main = () => {
     const [types, setTypes] = useState([]);

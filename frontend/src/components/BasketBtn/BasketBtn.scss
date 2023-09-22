@@ -33,8 +33,6 @@
       width: auto;
       height: 28px;
       color: #FFF;
-      leading-trim: both;
-      text-edge: cap;
       font-family: Prosto One;
       font-size: 15px;
       font-style: normal;
@@ -50,26 +48,25 @@
     &_count {
       display: flex;
       align-items: center;
-      gap: 12px;
 
       p {
         font-size: 25px!important;
         min-width: 40px;
         text-align: center;
+        color: #FFFFFF;
       }
 
       &_button {
-        width: 33px;
-        height: 33px;
+        width: 28px;
+        height: 28px;
         display: flex;
         align-items: center;
         justify-content: center;
         border: 2.5px solid #FFF;
         border-radius: 50%;
-        background: #0E3F16;
         color: #FFF;
         font-family: Prosto One;
-        font-size: 40px;
+        font-size: 20px;
         font-style: normal;
         font-weight: 400;
         line-height: 140%;
@@ -77,3 +74,11 @@
     }
   }
 }
+
+// media
+
+@media screen and (max-width: 350px) {
+  .basketButton__basket-text button {
+    font-size: 12px!important;
+  }
+  }

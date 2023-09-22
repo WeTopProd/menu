@@ -1,9 +1,11 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './Preorder.scss'
 import RegisterActive from "../../components/RegisterActive/RegisterActive";
+import {useSelector} from "react-redux";
 
 const Preorder = () => {
     const [preorder, setPreorder] = useState(false)
+    const {me} = useSelector((state) => state.auth)
 
     /*
      const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,8}$/i; // Почта
@@ -13,9 +15,10 @@ const Preorder = () => {
      const oneDigitRegex = /(?=.*\d)/; // Одна цифра
      const registerPassRegex = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z0-9]{8,}/; // Пароль
      */
-    const [phone, setPhone] = useState('');
+    const [name, setName] = useState(!!me.first_name ? me.first_name + " " + me.last_name : '');
+    const [phone, setPhone] = useState(me.phone);
     const [phoneError, setPhoneError] = useState('');
-    const [email, setEmail] = useState('');
+    const [email, setEmail] = useState(me.email);
     const [emailError, setEmailError] = useState('');
 
     const validatePhone = (phone) => {
@@ -49,6 +52,10 @@ const Preorder = () => {
         setEmail(value);
         validateEmail(value);
     };
+    const handleNameChange = (event) => {
+        const value = event.target.value;
+        setName(value);
+    };
 
     return (
         <div className="preorder">
@@ -58,15 +65,15 @@ const Preorder = () => {
                     :  <div className="preorder__container">
                         <p>Предзаказ банкета</p>
                         <div>
-                            <input type="text" placeholder="Имя*"/>
+                            <input disabled={!!me.first_name} value={name} type="text" onChange={handleNameChange} placeholder="Имя*"/>
 
                         </div>
                         <div>
-                            <input type="number" value={phone}  onChange={handlePhoneChange} placeholder="Телефон*"/>
+                            <input disabled={!!me.phone} type="text" value={phone}  onChange={handlePhoneChange} placeholder="Телефон*"/>
                             {phoneError && <span className="error">{phoneError}</span>}
                         </div>
                         <div>
-                            <input type="text" value={email} onChange={handleEmailChange} placeholder="Почта*"/>
+                            <input disabled={!!me.email} type="text" value={email} onChange={handleEmailChange} placeholder="Почта*"/>
                             {emailError && <span className="error">{emailError}</span>}
                         </div>
                         <div>

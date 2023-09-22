@@ -4,6 +4,8 @@ import Header from "./components/Layout/Header/Header";
 import { useSelector, useDispatch } from 'react-redux'
 import "./App.scss"
 import {authGetMe} from "./redux/auth/thunk";
+import {getGoods} from "./redux/basket/thunk";
+import {reset} from "./redux/basket";
 
 const App = () => {
     const token = useSelector((state) => state.auth.token)
@@ -12,6 +14,14 @@ const App = () => {
     useEffect(() => {
         if (token){
             dispatch(authGetMe())
+        }
+    }, [token]);
+
+    useEffect(() => {
+        if (token){
+            dispatch(getGoods())
+        }else{
+            dispatch(reset())
         }
     }, [token]);
 

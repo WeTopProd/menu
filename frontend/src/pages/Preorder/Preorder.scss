@@ -39,12 +39,11 @@
         font-weight: 400;
         margin-left: -8px;
         height: 19px;
-        text-transform: capitalize;
         outline: none;
         border-bottom: 1px white solid;
 
         &::placeholder {
-          color: #FFF;
+          color: #bcbcbc;
         }
       }
     }

@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   padding-left: 12px;
+  padding-bottom: 12px;
   gap: 10px;
   overflow-y: scroll;
 
@@ -9,7 +10,6 @@
   &__list {
     display: flex;
     flex-direction: column;
-    padding-left: 12px;
     gap: 10px;
     overflow-y: scroll;
 
@@ -19,8 +19,8 @@
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: #fbfbfb;    /* цвет бегунка */
-      border-radius: 20px;       /* округлось бегунка */
+      background-color: #fbfbfb; /* цвет бегунка */
+      border-radius: 20px; /* округлось бегунка */
     }
   }
 
@@ -31,15 +31,13 @@
   }
 
   &__desc {
-    width: 96%;
     border-radius: 2px;
     background: rgba(0, 0, 0, 0.50);
-    padding-bottom: 5px;
+    padding: 5px 9px 5px 9px;
 
     p {
       color: #FFF;
       font-size: 8px;
-      margin-left: 9px;
     }
 
     &_num {
@@ -51,6 +49,7 @@
 
     &_dishPrice {
       display: flex;
+      justify-content: space-between;
       margin-top: 5px;
 
       &_dish {

@@ -16,8 +16,7 @@ const HeaderMenu = ({menu, setMenu}) => {
                 alt="iconMenu"
             />
             <div onClick={closeModal} className={"menu__container" + (!menu ? " menu__container-hidden" : "")}>
-                <div className={"menu__items"}
-                     onClick={e => e.stopPropagation()}>
+                <div className={"menu__items"}>
                     <Link to={"/stock"}>
                         <p>Акции</p>
                     </Link>

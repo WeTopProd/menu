@@ -1,122 +1,71 @@
 .hookahElement {
-  width: 100%;
   position: relative;
-  z-index: 1;
-  margin-top: 29px;
-  padding-top: 77px;
+  min-height: 541px;
+  border: 2px solid #FFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 23px;
+  padding: 12px;
 
-  /*.classic {
-    background: url("../../assets/images/hookah/modern-hookah1.png") center no-repeat;
-    margin-top: 133px;
-  }
-
-  .premium {
-    background: url("../../assets/images/hookah/modern-hookah2.png") center no-repeat;
-    margin-top: 157px;
-  }
-
-  .elite {
-    background: url("../../assets/images/hookah/pexels-cachimberos3.png") center no-repeat;
-    margin-top: 157px;
-  }*/
-
-  &__subtitle {
-    width: calc(100% + 30px);
-    height: 77px;
-    background: url("../../assets/images/hookah/hookah11.gif") center no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  &_image {
     position: absolute;
-    left: -15px;
-    top:0;
-
-    p {
-      text-transform: uppercase;
-    }
+    width: calc(100% - 24px);
+    height: calc(100% - 24px);
+    top: 12px;
+    left: 12px;
+    z-index: 0;
   }
 
-  &__block {
-    position: relative;
-    min-height: 541px;
-    border: 2px solid #FFF;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-top: 23px;
-    padding: 12px;
+  &_desc {
+    z-index: 1;
 
-    &_image{
-      position: absolute;
-      width: calc(100% - 24px);
-      height: calc(100% - 24px);
-      top: 12px;
-      left: 12px;
-      z-index: 0;
-    }
-    &_desc {
-      z-index: 1;
-
-      &_subtitle {
-        margin-top: 2px;
-        margin-bottom: 26px;
-      }
-
-      &_item {
-        display: flex;
-        align-items: center;
-        margin-top: 14px;
-
-        p {
-          color: #FFF;
-          font-size: 25px;
-          margin-left: 17px;
-          cursor: pointer;
-
-          &:hover {
-            color: #FF00A2;
-          }
-        }
-
-        img {
-          height: 14px;
-          width: 59px;
-          margin-bottom: 11px;
-        }
-      }
-
-      &_linck {
-        z-index: 1;
-        margin-top: 36px;
-        cursor: pointer;
-      }
+    &_subtitle {
+      margin: 2px 19px 26px 19px;
     }
 
-    &_price {
+    &_item {
       display: flex;
-      justify-content: space-between;
-      margin-bottom: 44px;
-      max-width: 289px;
-      margin-left: 19px;
-
-      button {
-        width: 87px;
-        height: 44.85px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 10.553px;
-        background: #A600FF;
-        box-shadow: 0 3.95722px 13.19073px 0 rgba(0, 0, 0, 0.15);
-        border: none;
-        margin-bottom: 5px;
-        margin-left: 40px;
-      }
+      align-items: center;
+      margin-top: 14px;
 
       p {
-        margin-top: 13px;
+        color: #FFF;
+        font-size: 25px;
+        margin-left: 17px;
+        cursor: pointer;
+      }
+
+      img {
+        height: 14px;
+        width: 59px;
       }
     }
+
+    &_item-active{
+      p{
+        color: #FF00A2;
+      }
+
+    }
+
+    &_linck {
+      z-index: 1;
+      cursor: pointer;
+      margin: 36px 19px 0 19px;
+    }
+  }
+
+  &_price {
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 19px 44px 19px;
+  }
+
+  .basketButton {
+    z-index: 1;
   }
 }
 
@@ -125,22 +74,20 @@
 
 @media screen and (max-width: 400px) {
   .hookahElement {
-    .hookahElement__block {
-      background-size: cover;
-    }
+    background-size: cover;
   }
 }
 
 @media screen and (max-width: 370px) {
-  .hookahElement__block_price button {
+  .hookahElement_price button {
     margin-left: 20px;
   }
 
-  .hookahElement__block_desc_item p {
+  .hookahElement_desc_item p {
     font-size: 18px;
   }
 
-  .hookahElement__block {
+  .hookahElement {
     min-height: 480px;
   }
 }

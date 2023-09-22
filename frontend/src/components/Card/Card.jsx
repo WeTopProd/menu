@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import "./Card.scss"
 import {getImage} from "../../helpers/image";
 import {api} from "../../api";
+import BasketBtn from "../BasketBtn/BasketBtn";
 
 const Card = ({data}) => {
     const [goods, setGoods] = useState([])
@@ -56,10 +57,7 @@ const Card = ({data}) => {
                                 <p className="card__desc_active_compound">Состав {good.compound}</p>
                                 <div className="card__desc_active_price">
                                     <p>{good.price} руб</p>
-                                    {/*{
-                                        num > 0 ? <Counter basket={basket} setBasket={setBasket} num={num} setNum={setNum}/>
-                                            : <BasketBtn isShow={isShow(idx)} basket={basket} setBasket={setBasket} num={num} setNum={setNum}/>
-                                    }*/}
+                                    <BasketBtn type="text" id={good.id}/>
                                 </div>
                             </div>
                             : <div className="card__desc">
@@ -68,10 +66,7 @@ const Card = ({data}) => {
                                     <p>{good.price} руб</p>
                                     <p>{good.weight} г.</p>
                                 </div>
-                                {/*{
-                                    num > 0 ? <Counter basket={basket} setBasket={setBasket} num={num} setNum={setNum}/>
-                                        : <BasketBtn basket={basket} setBasket={setBasket} num={num} setNum={setNum}/>
-                                }*/}
+                                <BasketBtn type="icon" id={good.id}/>
                             </div>
                     }
                 </div>

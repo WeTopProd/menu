@@ -1,7 +1,6 @@
-.basketBtn {
+.basketButton {
   display: flex;
   justify-content: center;
-  margin-top: 14px;
 
   button {
     padding: 5px 19px;
@@ -10,20 +9,71 @@
     border: none;
     box-shadow: 0 2.545454502105713px 8.484848976135254px 0 rgba(0, 0, 0, 0.15);
   }
-}
-
-.basketBtnActive {
-
-  button {
-    border-radius: 6.788px;
-    background: #0E3F16;
-    border: none;
-    padding: 4px 12px;
-    box-shadow: 0 2.54545px 8.48485px 0 rgba(0, 0, 0, 0.15);
-
-    p {
+  .basketButton__basket-icon{
+    button {
+      width: 56px;
+      height: 28px;
+      img{
+        height: 100%;
+      }
+    }
+  }
+  .basketButton__basket-colored-icon{
+    button {
+      background: #A600FF;
+      width: 87px;
+      height: 44px;
+      img{
+        height: 100%;
+      }
+    }
+  }
+  .basketButton__basket-text{
+    button {
+      width: auto;
+      height: 28px;
       color: #FFF;
+      leading-trim: both;
+      text-edge: cap;
+      font-family: Prosto One;
       font-size: 15px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+  }
+
+  &__counter {
+    display: flex;
+    align-items: center;
+
+    &_count {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      p {
+        font-size: 25px!important;
+        min-width: 40px;
+        text-align: center;
+      }
+
+      &_button {
+        width: 33px;
+        height: 33px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2.5px solid #FFF;
+        border-radius: 50%;
+        background: #0E3F16;
+        color: #FFF;
+        font-family: Prosto One;
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 140%;
+      }
     }
   }
 }

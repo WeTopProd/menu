@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './Hookah.scss'
-import HookahElement from "../../components/HookahElement/HookahElement";
+import HookahElements from "../../components/HookahElement/HookahElements";
 import {api} from "../../api";
 
 const Hookah = () => {
@@ -23,7 +23,7 @@ const Hookah = () => {
             <div className="hookah__container">
                 <p className="hookah__container_title">Кальянная карта</p>
                 {types.map((type, idx) =>
-                    <HookahElement key={idx} type={type}/>
+                    <HookahElements key={idx} type={type}/>
                 )}
             </div>
         </div>

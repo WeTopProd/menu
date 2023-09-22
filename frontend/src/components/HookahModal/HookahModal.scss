@@ -40,12 +40,17 @@
 
       p {
         font-size: 25px;
-
-        &:hover {
-          color: #FF00A2;
-        }
       }
+
+
     }
+
+    &__item-active{
+      p{
+        color: #FF00A2;
+      }
+
+     }
 
     &__button {
       max-width: 153px;

@@ -1,0 +1,22 @@
+.hookahElements {
+  width: 100%;
+  position: relative;
+  margin-top: 29px;
+  padding-top: 77px;
+
+  &__subtitle {
+    width: calc(100% + 30px);
+    height: 77px;
+    background: url("../../assets/images/hookah/hookah11.gif") center no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: -15px;
+    top:0;
+
+    p {
+      text-transform: uppercase;
+    }
+  }
+}

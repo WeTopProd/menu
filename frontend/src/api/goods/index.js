@@ -11,13 +11,8 @@ async function getGoodsSubTypes(data = {}){
    return request('get', "/goods/subtypes", data, false)
 }
 
-async function getGoodsSubTypesGif(data = {}){
-    return request('get', "/goods/subtypes/name", data, false)
-}
-
 export const goodsApi = {
     getList,
     getGoodsTypes,
-    getGoodsSubTypes,
-    getGoodsSubTypesGif
+    getGoodsSubTypes
 }

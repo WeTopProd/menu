@@ -8,6 +8,7 @@ import {api} from "../../api";
 import {getGoods} from "../../redux/basket/thunk";
 
 const Basket = () => {
+    const [appState, setAppState] = useState([]);
     const [order, setOrder] = useState(false)
     const {goods, num_table, num_person, comment} = useSelector((state) => state.basket)
     const dispatch = useDispatch()
@@ -33,6 +34,13 @@ const Basket = () => {
         dispatch(setComment(e.target.value))
     }
 
+    useEffect(() => {
+        api.orderApi.getOrderHistory().then(res => {
+            setAppState(res.data)
+        })
+    }, [])
+    const orderNumber =  appState.length >= 0  ? appState.length : 1
+
     const createOrder = () => {
         if (num_table.length === 0) {
             alert("Введите номер стола")
@@ -47,6 +55,7 @@ const Basket = () => {
             return
         }
         api.orderApi.createOrder({
+            num_order: orderNumber,
             num_table: num_table,
             num_person: num_person,
             comment: comment,
@@ -67,7 +76,7 @@ const Basket = () => {
                     : <div>
                         <h1 className="basket__title">Корзина</h1>
                         <div className="basket__desc">
-                            {/*<p className="basket__desc_order">Заказ № 635</p>*/}
+                            <p className="basket__desc_order">Заказ № {orderNumber}</p>
                             <div className="basket__desc_list">
                                 {
                                     goods.map((good, idx) => <p key={idx}>{good.goods.title} ({good.goods.weight}МЛ)

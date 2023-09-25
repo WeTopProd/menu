@@ -8,6 +8,8 @@ import {api} from "../../api";
 
 const Register = () => {
     const [isRegistered, setIsRegistered] = useState(false)
+    const [password, setPassword] = useState(true)
+    const [errRegister, setErrRegister] = useState('')
     const [state, dispatch] = useReducer(reducer, initialState);
     const navigate = useNavigate();
 
@@ -21,9 +23,12 @@ const Register = () => {
             navigate("/")
         }, 3000)
     }
-
     const registerAction = () => {
+        setPassword(false)
         api.authApi.register(state).then(goToBack)
+            .catch((err)=>{
+                setErrRegister(err.response.data)
+            });
     }
 
     return (
@@ -32,46 +37,64 @@ const Register = () => {
                 isRegistered
                     ? <RegisterActive desc="Вы успешно зарегистрировались"/>
                     : <div className="registration__container registration__container_login">
-                        <h3 className="registration__container_title registration__container_title_login">Вход в личный
-                            кабинет</h3>
+                        <h3 className="registration__container_title registration__container_title_login">Регистрация</h3>
                         <div className="registration__container_inputs">
                             <div className="registration__container_inputs_block">
-                                <input
-                                    value={state.email}
-                                    type="email"
-                                    placeholder="Почта"
-                                    onChange={e => setData("email", e)}
-                                />
-                                <input
-                                    value={state.first_name}
-                                    type="text"
-                                    placeholder="Имя"
-                                    onChange={e => setData("first_name", e)}
-                                />
-                                <input
-                                    value={state.password}
-                                    type="password"
-                                    placeholder="Пароль"
-                                    onChange={e => setData("password", e)}
-                                />
-                                <input
-                                    value={state.last_name}
-                                    type="text"
-                                    placeholder="Фамилия"
-                                    onChange={e => setData("last_name", e)}
-                                />
-                                <input
-                                    value={state.re_password}
-                                    type="password"
-                                    placeholder="Повторить пароль"
-                                    onChange={e => setData("re_password", e)}
-                                />
-                                <input
-                                    value={state.phone}
-                                    type="text"
-                                    placeholder="Телефон"
-                                    onChange={e => setData("phone", e)}
-                                />
+                                <div>
+                                    <input
+                                        value={state.email}
+                                        type="email"
+                                        placeholder="Почта"
+                                        onChange={e => setData("email", e)}
+                                    />
+                                    <span>{errRegister.email}</span>
+                                </div>
+                                <div>
+                                    <input
+                                        value={state.first_name}
+                                        type="text"
+                                        placeholder="Имя"
+                                        onChange={e => setData("first_name", e)}
+                                    />
+                                    <span>{errRegister.first_name}</span>
+                                </div>
+                                <div>
+                                    <input
+                                        value={state.password}
+                                        type="password"
+                                        placeholder="Пароль"
+                                        onChange={e => setData("password", e)}
+                                    />
+                                    <span>{errRegister.password}</span>
+                                </div>
+                                <div>
+                                    <input
+                                        value={state.last_name}
+                                        type="text"
+                                        placeholder="Фамилия"
+                                        onChange={e => setData("last_name", e)}
+                                    />
+                                    <span>{errRegister.last_name}</span>
+                                </div>
+                                <div>
+                                    <input
+                                        value={state.re_password}
+                                        type="password"
+                                        placeholder="Повторить пароль"
+                                        onChange={e => setData("re_password", e)}
+                                    />
+                                    <span>{state.password === state.re_password || password ?  '' :  "Пароль не совподает"}</span>
+                                    {/*<span>{state.password && state.re_password ?  '' :  "Это поле не может быть пустым."}</span>*/}
+                                </div>
+                                <div>
+                                    <input
+                                        value={state.phone}
+                                        type="text"
+                                        placeholder="Телефон"
+                                        onChange={e => setData("phone", e)}
+                                    />
+                                    <span>{errRegister.phone}</span>
+                                </div>
                             </div>
                         </div>
                         <div className="registration__container_signIn">

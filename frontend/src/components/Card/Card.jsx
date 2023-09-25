@@ -6,8 +6,7 @@ import BasketBtn from "../BasketBtn/BasketBtn";
 
 const Card = ({data}) => {
     const [goods, setGoods] = useState([])
-
-    const [num, setNum] = useState(0)
+    const [time, setTime] = useState(false)
     const [showId, setShowId] = useState(-1)
 
     useEffect(() => {
@@ -19,8 +18,12 @@ const Card = ({data}) => {
     const handleClick = (id) => {
         if (showId === id) {
             setShowId(-1)
+            setTime(false)
         } else {
             setShowId(id)
+            setTimeout(() => {
+                setTime(true)
+            }, 1500);
         }
     }
     const orderStyle = (id) => {
@@ -41,14 +44,17 @@ const Card = ({data}) => {
 
     return (
         <div className="card__container_items">
-            {goods.map((good, idx) => <div key={idx} className={isShow(idx) ? "card  card__active" : "card"}
-                                           style={{order: orderStyle(idx)}}>
+            {goods.map((good, idx) => <div
+                key={idx}
+                className={isShow(idx) ? "card  card__active" : "card"}
+                style={{order: orderStyle(idx)}}
+                >
                     <div onClick={() => handleClick(idx)}
                          className={isShow(idx) ? "card__img  card__img_active" : "card__img"}>
                         <img src={getImage(good.images)} alt="icon"/>
                     </div>
                     {
-                        isShow(idx) ?
+                        isShow(idx) && time ?
                             <div className="card__desc_active">
                                 <div className="card__desc_active_title">
                                     <p>{good.title}</p>

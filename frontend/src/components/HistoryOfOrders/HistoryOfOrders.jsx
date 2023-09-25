@@ -18,7 +18,7 @@ const HistoryOfOrders = () => {
                     history.map(elem => {
                         return (
                             <div className="historyOfOrders__desc">
-                                <p className="historyOfOrders__desc_num">Заказ №{elem.id}</p>
+                                <p className="historyOfOrders__desc_num">Заказ №{elem.id - 1}</p>
                                 {
                                     elem.items.map((item, idc) => <div className="historyOfOrders__desc_dishPrice">
                                         <p className="historyOfOrders__desc_dishPrice_dish">{item.goods.title} {item.goods.weight}МЛ)</p>

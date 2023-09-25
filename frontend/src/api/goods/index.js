@@ -11,8 +11,13 @@ async function getGoodsSubTypes(data = {}){
    return request('get', "/goods/subtypes", data, false)
 }
 
+async function getGoodsHistory(data = {}){
+    return request('get', "/goods/order_history", data, false)
+}
+
 export const goodsApi = {
     getList,
     getGoodsTypes,
-    getGoodsSubTypes
+    getGoodsSubTypes,
+    getGoodsHistory
 }

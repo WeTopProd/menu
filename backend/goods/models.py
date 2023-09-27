@@ -218,6 +218,11 @@ class ShoppingCart(models.Model):
         verbose_name='Количество товар'
     )
     price = models.IntegerField('Цена товара')
+    additive_price = models.IntegerField(
+        'Цена добавки для кальяна',
+        null=True,
+        blank=True
+    )
 
     class Meta:
         verbose_name = 'Покупка'
@@ -248,11 +253,6 @@ class Order(models.Model):
     comment = models.TextField('Комментарий к заказу')
     tobacco_type = models.CharField('Тип табака', max_length=50)
     additive_type = models.CharField('Тип добавки для кальяна', max_length=50)
-    additive_price = models.IntegerField(
-        'Стоимость добавки для кальяна',
-        null=True,
-        blank=True
-    )
 
     class Meta:
         verbose_name = 'Заказ'
@@ -267,6 +267,11 @@ class OrderItem(models.Model):
     goods = models.ForeignKey(Goods, on_delete=models.CASCADE)
     count = models.PositiveIntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    additive_price = models.IntegerField(
+        'Цена добавки для кальяна',
+        null=True,
+        blank=True
+    )
 
     class Meta:
         verbose_name = 'Товар в заказе'

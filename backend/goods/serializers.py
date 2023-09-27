@@ -75,7 +75,6 @@ class GoodsSerializer(serializers.ModelSerializer):
             'hookah_type',
             'tobacco_type',
             'additive_type',
-            'additive_price',
             'is_favorited',
             'is_in_shopping_cart',
         )
@@ -149,6 +148,7 @@ class ShoppingCartSerializer(serializers.ModelSerializer):
             'user',
             'count',
             'price',
+            'additive_price'
         )
 
 
@@ -181,7 +181,7 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OrderItem
-        fields = ('goods', 'count', 'price')
+        fields = ('goods', 'count', 'price', 'additive_price')
 
 
 class OrderSerializer(serializers.ModelSerializer):
@@ -200,6 +200,5 @@ class OrderSerializer(serializers.ModelSerializer):
             'comment',
             'tobacco_type',
             'additive_type',
-            'additive_price',
             'items'
         )

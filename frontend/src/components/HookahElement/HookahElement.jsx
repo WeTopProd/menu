@@ -4,10 +4,13 @@ import Line from '../../assets/images/hookah/Line42.png'
 import {getImage} from "../../helpers/image";
 import BasketBtn from "../BasketBtn/BasketBtn";
 import HookahModal from "../HookahModal/HookahModal";
+import {useSelector} from "react-redux";
 
 const HookahElement = ({good, type}) => {
     const [tobacco, setTobacco] = useState({tobacco_type: "", additive_type: ""})
     const [isShow, setIsShow] = useState(false)
+    const [tobaccoPrice, setTobaccoPrice] = useState(0)
+    const {goods} = useSelector((state) => state.basket)
 
     const setAdditiveType = (type) => {
         setTobacco({
@@ -15,10 +18,6 @@ const HookahElement = ({good, type}) => {
             additive_type: type
         })
     }
-
-    useEffect(() => {
-        console.log(tobacco)
-    }, [tobacco])
 
     const setTobaccoType = (type) => {
         if (tobacco.tobacco_type === type) {
@@ -33,8 +32,9 @@ const HookahElement = ({good, type}) => {
             })
         }
 
-
+        //goods.map(a => a.goods.price = good.price + tobaccoPrice)
     }
+
     return (
         <div className="classic hookahElement">
             <div className="hookahElement_desc">
@@ -59,7 +59,7 @@ const HookahElement = ({good, type}) => {
                     : ''
             }
             <div className="hookahElement_price">
-                <p>{good.price} руб.</p>
+                <p>{good.price + tobaccoPrice} руб.</p>
                 <BasketBtn type="colored-icon" id={good.id} data={tobacco}/>
             </div>
 
@@ -69,6 +69,7 @@ const HookahElement = ({good, type}) => {
                     additive_types={good.additive_type}
                     setAdditiveType={setAdditiveType}
                     setIsShow={setIsShow}
+                    setTobaccoPrice={setTobaccoPrice}
                 /> : ''
             }
 

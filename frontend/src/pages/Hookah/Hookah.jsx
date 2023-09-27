@@ -3,7 +3,7 @@ import './Hookah.scss'
 import HookahElements from "../../components/HookahElement/HookahElements";
 import {api} from "../../api";
 
-const Hookah = () => {
+const Hookah = ({setPriceTobacco}) => {
     const [types, setTypes] = useState([]);
 
     useEffect(() => {

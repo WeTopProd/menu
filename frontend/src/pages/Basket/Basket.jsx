@@ -15,6 +15,7 @@ const Basket = () => {
     const token = useSelector((state) => state.auth.token)
     const navigate = useNavigate();
 
+
     useEffect(() => {
         if (!token) {
             navigate("/login")
@@ -39,7 +40,6 @@ const Basket = () => {
             setAppState(res.data)
         })
     }, [])
-    const orderNumber =  appState.length >= 0  ? appState.length : 1
 
     const createOrder = () => {
         if (num_table.length === 0) {
@@ -55,18 +55,17 @@ const Basket = () => {
             return
         }
         api.orderApi.createOrder({
-            num_order: orderNumber,
             num_table: num_table,
             num_person: num_person,
             comment: comment,
-            tobacco_type: "123",
-            additive_type: "123",
-            total_price: goods.reduce((prev, next) => prev + next.goods.price, 0)
+            additive_price: '12345',
+            total_price: goods.reduce((prev, next) => prev + next.price,0)
         }).then(res => {
             dispatch(getGoods())
             setOrder(true)
         })
     }
+    console.log(goods, 'gggggggggggggggggggggg')
 
     return (
         <div className="basket">
@@ -76,14 +75,15 @@ const Basket = () => {
                     : <div>
                         <h1 className="basket__title">Корзина</h1>
                         <div className="basket__desc">
-                            <p className="basket__desc_order">Заказ № {orderNumber}</p>
+                            <p className="basket__desc_order">Заказ № {appState.length + 1}</p>
                             <div className="basket__desc_list">
                                 {
-                                    goods.map((good, idx) => <p key={idx}>{good.goods.title} ({good.goods.weight}МЛ)
-                                        - {good.goods.price}руб.</p>)
+                                    goods.map((good, idx) => <p key={idx} >{good.count} <span>x</span> {good.goods.title}
+                                        ({good.goods.weight}МЛ) - {good.price}руб.</p>)
+
                                 }
                             </div>
-                            <p className="basket__desc_price">Сумма: {goods.reduce((prev, next) => prev + next.goods.price, 0)}руб.</p>
+                            <p className="basket__desc_price">Сумма: {goods.reduce((prev, next) => prev + next.price,0)} руб.</p>
                             <div className="basket__desc_table">
                                 <p>Номер стола:</p>
                                 <input type="number" value={num_table} onChange={changeNumTable}/>

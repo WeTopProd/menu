@@ -10,19 +10,20 @@ const HistoryOfOrders = () => {
             setHistory(res.data)
         })
     }, [])
+
     return (
         <div className="historyOfOrders">
             <p className="historyOfOrders__title">История заказов:</p>
             <div className="historyOfOrders__list">
                 {
-                    history.map(elem => {
+                    history.map((elem, idx) => {
                         return (
-                            <div className="historyOfOrders__desc">
-                                <p className="historyOfOrders__desc_num">Заказ №{elem.id - 1}</p>
+                            <div key={idx} className="historyOfOrders__desc">
+                                <p className="historyOfOrders__desc_num">Заказ №{idx + 1}</p>
                                 {
-                                    elem.items.map((item, idc) => <div className="historyOfOrders__desc_dishPrice">
-                                        <p className="historyOfOrders__desc_dishPrice_dish">{item.goods.title} {item.goods.weight}МЛ)</p>
-                                        <p className="historyOfOrders__desc_dishPrice_price">{item.goods.price}руб.</p>
+                                    elem.items.map((item, idx) => <div key={idx} className="historyOfOrders__desc_dishPrice">
+                                        <p className="historyOfOrders__desc_dishPrice_dish">{item.count}<span> x </span>{item.goods.title} {item.goods.weight}МЛ)</p>
+                                        <p className="historyOfOrders__desc_dishPrice_price">{item.price}руб.</p>
                                     </div>)
                                 }
                                 <span className="historyOfOrders__desc_line"></span>

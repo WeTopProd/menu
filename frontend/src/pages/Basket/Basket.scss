@@ -23,6 +23,8 @@
       font-family: Prosto One;
       font-size: 20px;
       text-transform: capitalize;
+      display: flex;
+      gap: 7px;
     }
 
     &_order {
@@ -38,6 +40,12 @@
       gap: 10px;
       padding-bottom: 10px;
       border-bottom: 1px solid #FFF;
+
+      span {
+        font-size: 13px;
+        color: red;
+        margin-top: 4px;
+      }
     }
 
     &_price {
@@ -82,7 +90,7 @@
         p {
           font-size: 25px!important;
           min-width: 40px;
-          text-align: center;
+          justify-content: center;
         }
 
         &_button {
@@ -143,6 +151,12 @@
   }
 }
 
+.inputError {
+  input {
+    border: 1px solid red!important;
+
+  }
+}
 
 //media
 

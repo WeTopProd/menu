@@ -4,7 +4,8 @@ const initialState = {
     goods: [],
     num_table: "",
     num_person: 1,
-    comment: ""
+    comment: "",
+    additive_price: "",
 }
 
 export const basketStore = createSlice({

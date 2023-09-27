@@ -17,7 +17,7 @@ const HookahElements = ({type}) => {
             <div className="hookahElements__subtitle">
                 <p>{type}</p>
             </div>
-            {goods.map((good, idx) => <HookahElement key={idx} type={type} good={good}/>)}
+            {goods.map((good, idx) => <HookahElement goods={goods} key={idx} type={type} good={good}/>)}
         </div>
     );
 };

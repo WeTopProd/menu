@@ -1,4 +1,5 @@
-import React, {useReducer, useState} from 'react';
+import React, {useEffect, useReducer, useState} from 'react';
+import InputMask from "react-input-mask";
 import "./Register.scss"
 import RegisterActive from "../../components/RegisterActive/RegisterActive";
 import {Link, useNavigate} from "react-router-dom";
@@ -8,7 +9,7 @@ import {api} from "../../api";
 
 const Register = () => {
     const [isRegistered, setIsRegistered] = useState(false)
-    const [password, setPassword] = useState(true)
+    const [classError, setClassError] = useState(false)
     const [errRegister, setErrRegister] = useState('')
     const [state, dispatch] = useReducer(reducer, initialState);
     const navigate = useNavigate();
@@ -17,18 +18,55 @@ const Register = () => {
         dispatch({type: 'set_data', key: key, value: e.target.value})
     }
 
-    const goToBack = () => {
-        setIsRegistered(true)
-        setTimeout(()=>{
-            navigate("/")
-        }, 3000)
-    }
-    const registerAction = () => {
-        setPassword(false)
+    useEffect(() => {
         api.authApi.register(state).then(goToBack)
             .catch((err)=>{
                 setErrRegister(err.response.data)
             });
+    }, [state]);
+
+
+    const goToBack = () => {
+        setIsRegistered(true)
+        setTimeout(()=>{
+            navigate("/")
+        }, 2000)
+    }
+
+    const registerAction = () => {
+        createOrder()
+        setClassError(true)
+        api.authApi.register(state).then(goToBack)
+            .catch((err)=>{
+                console.log(err)
+            });
+    }
+
+    const createOrder = () => {
+        if (!state.email || errRegister.email) {
+            alert(`Почта: ${errRegister.email}`)
+            return
+        }
+        if (!state.first_name || errRegister.first_name) {
+            alert(`Имя: ${errRegister.first_name}`)
+            return
+        }
+        if (!state.password || errRegister.password) {
+            alert(`Пароль: ${errRegister.password}`)
+            return
+        }
+        if (!state.last_name || errRegister.last_name) {
+            alert(`Фамилия: ${errRegister.last_name}`)
+            return
+        }
+        if (!state.re_password || errRegister.re_password) {
+            alert(`Повторить пароль: ${errRegister.re_password}`)
+            return
+        }
+        if (!state.phone || errRegister.phone) {
+            alert(`Телефон: ${errRegister.phone}`)
+            return
+        }
     }
 
     return (
@@ -40,65 +78,59 @@ const Register = () => {
                         <h3 className="registration__container_title registration__container_title_login">Регистрация</h3>
                         <div className="registration__container_inputs">
                             <div className="registration__container_inputs_block">
-                                <div>
+                                <div className={classError && errRegister.email ? "inputError" : ''}>
                                     <input
                                         value={state.email}
                                         type="email"
                                         placeholder="Почта"
                                         onChange={e => setData("email", e)}
                                     />
-                                    <span>{errRegister.email}</span>
                                 </div>
-                                <div>
+                                <div className={classError && errRegister.first_name ? "inputError" : ''}>
                                     <input
                                         value={state.first_name}
                                         type="text"
                                         placeholder="Имя"
                                         onChange={e => setData("first_name", e)}
                                     />
-                                    <span>{errRegister.first_name}</span>
                                 </div>
-                                <div>
+                                <div className={classError && errRegister.password ? "inputError" : ''}>
                                     <input
                                         value={state.password}
                                         type="password"
                                         placeholder="Пароль"
                                         onChange={e => setData("password", e)}
                                     />
-                                    <span>{errRegister.password}</span>
                                 </div>
-                                <div>
+                                <div className={classError && errRegister.last_name ? "inputError" : ''}>
                                     <input
                                         value={state.last_name}
                                         type="text"
                                         placeholder="Фамилия"
                                         onChange={e => setData("last_name", e)}
                                     />
-                                    <span>{errRegister.last_name}</span>
                                 </div>
-                                <div>
+                                <div className={classError && errRegister.re_password ? "inputError" : ''}>
                                     <input
                                         value={state.re_password}
                                         type="password"
                                         placeholder="Повторить пароль"
                                         onChange={e => setData("re_password", e)}
                                     />
-                                    <span>{state.password === state.re_password || password ?  '' :  "Пароль не совподает"}</span>
-                                    {/*<span>{state.password && state.re_password ?  '' :  "Это поле не может быть пустым."}</span>*/}
                                 </div>
-                                <div>
-                                    <input
+                                <div className={classError && errRegister.phone ? "inputError" : ''}>
+                                    <InputMask
+                                        mask="+7 999 999 99 99"
                                         value={state.phone}
                                         type="text"
                                         placeholder="Телефон"
-                                        onChange={e => setData("phone", e)}
-                                    />
-                                    <span>{errRegister.phone}</span>
+                                        onChange={e => setData("phone", e)}>
+                                    </InputMask>
                                 </div>
                             </div>
                         </div>
                         <div className="registration__container_signIn">
-                            <p>Есть аккаунт?</p>
+                            <p className="assss">Есть аккаунт?</p>
                             <Link to={"/login"}>Войдите!</Link>
                         </div>
                         <button onClick={registerAction} className="registration__container_button">Зарегистрироваться</button>

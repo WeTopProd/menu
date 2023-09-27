@@ -31,7 +31,7 @@ const BasketBtn = ({id, type, data}) => {
 
     const addToBasket = () => {
         if (checkAuth()) {
-            api.shoppingApi.addToBasket(id, {...data, count: 1}).then(res => {
+            api.shoppingApi.addToBasket(id, {...data, count: count()}).then(res => {
                 dispatch(getGoods())
             })
         }

@@ -20,18 +20,15 @@ const Login = () => {
             dispatchStore(authLogin("email", {email: state.login, password: state.password})).then(goToBack)
                 .catch((err)=>{
                     setIsErrLogin(err.response.data)
-                    console.log(err.response.data.Array, 'qqqqqqqqqqqqqqqqqqqqqqq')
                 });
         } else {
             dispatchStore(authLogin("phone", {phone: state.login, password: state.password})).then(goToBack)
                 .catch((err)=>{
                     setIsErrLogin(err.response.data)
-                    console.log(err.response.data, '////////////////////////////')
                 });
         }
     }
 
-    console.log(errLogin, 'errrrrrrrrrrrrrrrrrr')
     const setData = (key, e) => {
         dispatch({type: 'set_data', key: key, value: e.target.value})
     }

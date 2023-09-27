@@ -75,6 +75,7 @@ class GoodsSerializer(serializers.ModelSerializer):
             'hookah_type',
             'tobacco_type',
             'additive_type',
+            'additive_price',
             'is_favorited',
             'is_in_shopping_cart',
         )
@@ -199,5 +200,6 @@ class OrderSerializer(serializers.ModelSerializer):
             'comment',
             'tobacco_type',
             'additive_type',
+            'additive_price',
             'items'
         )

@@ -132,6 +132,7 @@ class GoodsViewSet(viewsets.ModelViewSet):
         comment = request.data.get('comment', '')
         tobacco_type = request.data.get('tobacco_type', '')
         additive_type = request.data.get('additive_type', '')
+        additive_price = request.data.get('additive_price', '')
         if (not tobacco_type or not num_table
                 or not num_person or not comment):
             return Response(

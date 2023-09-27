@@ -1,11 +1,8 @@
 import React, {useState} from 'react';
 import './HookahModal.scss'
 import Line from '../../assets/images/hookah/Line42.png'
-import {api} from "../../api";
-import {getGoods} from "../../redux/basket/thunk";
-import {useDispatch} from "react-redux";
 
-const HookahModal = ({setTobaccoPrice, setIsShow, additive_types, selected, setAdditiveType}) => {
+const HookahModal = ({setIsShow, additive_types, selected, setAdditiveType}) => {
     const [selectedType, setSelectedType] = useState(selected)
 
     const closeModal = (e) => {
@@ -16,13 +13,12 @@ const HookahModal = ({setTobaccoPrice, setIsShow, additive_types, selected, setA
         setIsShow(false)
     }
 
-    const selectType = (type, setTobaccoPrice) => {
+    const selectType = (type) => {
         if (selectedType === type) {
             setSelectedType("")
         } else {
             setSelectedType(type)
         }
-        selectedType === type ? setTobaccoPrice(0) : setTobaccoPrice(additive_types[type])
     }
 
     return (
@@ -32,7 +28,7 @@ const HookahModal = ({setTobaccoPrice, setIsShow, additive_types, selected, setA
                 {
                     Object.keys(additive_types).map((type, idx) =>
                         <div
-                            onClick={() => selectType(type, setTobaccoPrice)}
+                            onClick={() => selectType(type)}
                             key={idx}
                             className={"hookahModal__desc__item" + (selectedType === type ? " hookahModal__desc__item-active" : '')}
                         >

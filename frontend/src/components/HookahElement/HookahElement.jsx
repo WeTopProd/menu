@@ -4,13 +4,16 @@ import Line from '../../assets/images/hookah/Line42.png'
 import {getImage} from "../../helpers/image";
 import BasketBtn from "../BasketBtn/BasketBtn";
 import HookahModal from "../HookahModal/HookahModal";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {logDOM} from "@testing-library/react";
+import {api} from "../../api";
+import {getGoods} from "../../redux/basket/thunk";
 
 const HookahElement = ({good, type}) => {
     const [tobacco, setTobacco] = useState({tobacco_type: "", additive_type: ""})
     const [isShow, setIsShow] = useState(false)
-    const [tobaccoPrice, setTobaccoPrice] = useState(0)
     const {goods} = useSelector((state) => state.basket)
+    const dispatch = useDispatch()
 
     const setAdditiveType = (type) => {
         setTobacco({
@@ -18,6 +21,18 @@ const HookahElement = ({good, type}) => {
             additive_type: type
         })
     }
+
+    const getGood = () => {
+        return goods.find(g => g.goods.id === good.id)
+    }
+
+    useEffect(()=>{
+        if (getGood()?.count > 0) {
+            api.shoppingApi.updateBasket(good.id, {...tobacco, count: getGood()?.count}).then(res => {
+                dispatch(getGoods())
+            })
+        }
+    }, [tobacco])
 
     const setTobaccoType = (type) => {
         if (tobacco.tobacco_type === type) {
@@ -31,8 +46,6 @@ const HookahElement = ({good, type}) => {
                 tobacco_type: type
             })
         }
-
-        //goods.map(a => a.goods.price = good.price + tobaccoPrice)
     }
 
     return (
@@ -43,7 +56,7 @@ const HookahElement = ({good, type}) => {
                     good.tobacco_type.map((tobacco_type, idc) =>
                         <div key={idc}
                              onClick={() => setTobaccoType(tobacco_type)}
-                             className={"hookahElement_desc_item" + (tobacco.tobacco_type === tobacco_type ? " hookahElement_desc_item-active" : '')}
+                             className={"hookahElement_desc_item" + ((getGood()?.tobacco_type ? getGood()?.tobacco_type === tobacco_type : tobacco.tobacco_type === tobacco_type) ? " hookahElement_desc_item-active" : '')}
                         >
                             <img src={Line} alt="icon"/>
                             <p>{tobacco_type}</p>
@@ -59,17 +72,16 @@ const HookahElement = ({good, type}) => {
                     : ''
             }
             <div className="hookahElement_price">
-                <p>{good.price + tobaccoPrice} руб.</p>
+                <p>{getGood()?.price || good.price} руб.</p>
                 <BasketBtn type="colored-icon" id={good.id} data={tobacco}/>
             </div>
 
             {
                 isShow ? <HookahModal
-                    selected={tobacco.additive_type}
+                    selected={getGood()?.additive_type ? getGood()?.additive_type : tobacco.additive_type}
                     additive_types={good.additive_type}
                     setAdditiveType={setAdditiveType}
                     setIsShow={setIsShow}
-                    setTobaccoPrice={setTobaccoPrice}
                 /> : ''
             }
 

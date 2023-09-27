@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import "./BasketBtn.scss"
 import BasketIcon from "../../assets/images/basket/BasketIcon.png"
 import {api} from "../../api";
@@ -31,7 +31,7 @@ const BasketBtn = ({id, type, data}) => {
 
     const addToBasket = () => {
         if (checkAuth()) {
-            api.shoppingApi.addToBasket(id, {...data, count: count()}).then(res => {
+            api.shoppingApi.addToBasket(id, {...data, count: 1}).then(res => {
                 dispatch(getGoods())
             })
         }

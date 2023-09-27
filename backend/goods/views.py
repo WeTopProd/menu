@@ -133,8 +133,7 @@ class GoodsViewSet(viewsets.ModelViewSet):
         tobacco_type = request.data.get('tobacco_type', '')
         additive_type = request.data.get('additive_type', '')
         additive_price = request.data.get('additive_price', '')
-        if (not tobacco_type or not num_table
-                or not num_person or not comment):
+        if not num_table or not num_person or not comment:
             return Response(
                 {'error': 'Отсутствуют обязательные поля в запросе'},
                 status=status.HTTP_400_BAD_REQUEST)
@@ -154,6 +153,7 @@ class GoodsViewSet(viewsets.ModelViewSet):
                 comment=comment,
                 tobacco_type=tobacco_type,
                 additive_type=additive_type,
+                additive_price=additive_price
             )
 
             for order_item in order_items_to_create:

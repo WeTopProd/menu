@@ -79,3 +79,25 @@
     }
   }
 }
+
+
+.historyOfOrdersHookah {
+
+  &__desc {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+
+    &_elem {
+      span {
+        color: red;
+      }
+    }
+  }
+
+  &__tobacco {
+    margin-left: 15px;
+    margin-top: 5px;
+  }
+}
+

@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {getGoods} from "../../redux/basket/thunk";
 
-const BasketBtn = ({id, type, data}) => {
+const BasketBtn = ({id, type, data, additivePrice}) => {
     const {isAuth} = useSelector((state) => state.auth)
     const {goods} = useSelector((state) => state.basket)
     const navigate = useNavigate();
@@ -31,12 +31,15 @@ const BasketBtn = ({id, type, data}) => {
 
     const addToBasket = () => {
         if (checkAuth()) {
-            api.shoppingApi.addToBasket(id, {...data, count: 1}).then(res => {
+            api.shoppingApi.addToBasket(id, {
+                ...data,
+                count: 1,
+                additive_price: additivePrice
+            }).then(res => {
                 dispatch(getGoods())
             })
         }
     }
-
     const updateBasket = (count) =>{
         if (checkAuth()) {
             api.shoppingApi.updateBasket(id, {...data, count: count}).then(res => {

@@ -10,7 +10,7 @@ import {getGoods} from "../../redux/basket/thunk";
 const Basket = () => {
     const [appState, setAppState] = useState([]);
     const [order, setOrder] = useState(false)
-    const {goods, num_table, num_person, comment} = useSelector((state) => state.basket)
+    const {goods, num_table, num_person, comment, additive_price} = useSelector((state) => state.basket)
     const dispatch = useDispatch()
     const token = useSelector((state) => state.auth.token)
     const navigate = useNavigate();
@@ -46,10 +46,6 @@ const Basket = () => {
             alert("Введите номер стола")
             return
         }
-        if (comment.length === 0) {
-            alert("Введите комментарий")
-            return
-        }
         if (num_person === 0) {
             alert("Введите количество персон")
             return
@@ -58,14 +54,12 @@ const Basket = () => {
             num_table: num_table,
             num_person: num_person,
             comment: comment,
-            additive_price: '12345',
-            total_price: goods.reduce((prev, next) => prev + next.price,0)
+            total_price: goods.reduce((prev, next) => prev + next.price,0) + goods.reduce((prev, next) => prev + next.additive_price * next.count,0)
         }).then(res => {
             dispatch(getGoods())
             setOrder(true)
         })
     }
-    console.log(goods, 'gggggggggggggggggggggg')
 
     return (
         <div className="basket">
@@ -78,12 +72,32 @@ const Basket = () => {
                             <p className="basket__desc_order">Заказ № {appState.length + 1}</p>
                             <div className="basket__desc_list">
                                 {
-                                    goods.map((good, idx) => <p key={idx} >{good.count} <span>x</span> {good.goods.title}
-                                        ({good.goods.weight}МЛ) - {good.price}руб.</p>)
-
+                                    goods.map((good, idx) =>
+                                        <div key={idx} className="basketList">
+                                            <div className="basketList__elem">
+                                                <p  className="basketList__elem_count">{good.count}</p>
+                                                <p className="basketList__elem_x">x</p>
+                                                <p>{good.goods.title}({good.goods.weight}МЛ) - {good.price}руб.</p>
+                                            </div>
+                                            {
+                                                good.additive_price > 0 ?
+                                                    <div className="basketList__elem">
+                                                        <p  className="basketList__elem_count">{good.count}</p>
+                                                        <p className="basketList__elem_x">x</p>
+                                                        <p>Добавки к кальяну: {good.additive_type} - {good.count * good.additive_price}руб</p>
+                                                    </div> : ''
+                                            }
+                                            {
+                                                good.tobacco_type ?
+                                                    <div className="basketList__elem">
+                                                        <p className='basketList__elem_desc'>Табак для кальяна: {good.tobacco_type}</p>
+                                                    </div> : ''
+                                            }
+                                        </div>
+                                    )
                                 }
                             </div>
-                            <p className="basket__desc_price">Сумма: {goods.reduce((prev, next) => prev + next.price,0)} руб.</p>
+                            <p className="basket__desc_price">Сумма: {goods.reduce((prev, next) => prev + next.price,0) + goods.reduce((prev, next) => prev + next.additive_price * next.count,0)} руб.</p>
                             <div className="basket__desc_table">
                                 <p>Номер стола:</p>
                                 <input type="number" value={num_table} onChange={changeNumTable}/>

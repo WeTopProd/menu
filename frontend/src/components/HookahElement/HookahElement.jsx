@@ -5,22 +5,26 @@ import {getImage} from "../../helpers/image";
 import BasketBtn from "../BasketBtn/BasketBtn";
 import HookahModal from "../HookahModal/HookahModal";
 import {useDispatch, useSelector} from "react-redux";
-import {logDOM} from "@testing-library/react";
 import {api} from "../../api";
 import {getGoods} from "../../redux/basket/thunk";
 
 const HookahElement = ({good, type}) => {
-    const [tobacco, setTobacco] = useState({tobacco_type: "", additive_type: ""})
+    const [tobacco, setTobacco] = useState({tobacco_type: "", additive_type: "", additive_price: ''})
     const [isShow, setIsShow] = useState(false)
+    const [additivePrice, setAdditivePrice] = useState(0)
     const {goods} = useSelector((state) => state.basket)
     const dispatch = useDispatch()
 
     const setAdditiveType = (type) => {
+        setAdditivePrice(+good.additive_type[type])
         setTobacco({
             ...tobacco,
-            additive_type: type
+            additive_type: type,
+            additive_price: additivePrice,
         })
     }
+
+    console.log(good.additive_type, 'ppppppppppppppppp')
 
     const getGood = () => {
         return goods.find(g => g.goods.id === good.id)
@@ -38,12 +42,12 @@ const HookahElement = ({good, type}) => {
         if (tobacco.tobacco_type === type) {
             setTobacco({
                 ...tobacco,
-                tobacco_type: ""
+                tobacco_type: "",
             })
         } else {
             setTobacco({
                 ...tobacco,
-                tobacco_type: type
+                tobacco_type: type,
             })
         }
     }
@@ -72,13 +76,14 @@ const HookahElement = ({good, type}) => {
                     : ''
             }
             <div className="hookahElement_price">
-                <p>{getGood()?.price || good.price} руб.</p>
-                <BasketBtn type="colored-icon" id={good.id} data={tobacco}/>
+                <p>{good.price} руб.</p>
+                <BasketBtn type="colored-icon" id={good.id} data={tobacco} additivePrice={additivePrice}/>
             </div>
 
             {
                 isShow ? <HookahModal
                     selected={getGood()?.additive_type ? getGood()?.additive_type : tobacco.additive_type}
+                    selectedPrice={getGood()?.additive_price ? getGood()?.additive_price : tobacco.additive_price}
                     additive_types={good.additive_type}
                     setAdditiveType={setAdditiveType}
                     setIsShow={setIsShow}

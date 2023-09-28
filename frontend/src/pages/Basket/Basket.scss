@@ -22,9 +22,7 @@
       color: #FFF;
       font-family: Prosto One;
       font-size: 20px;
-      text-transform: capitalize;
       display: flex;
-      gap: 7px;
     }
 
     &_order {
@@ -40,12 +38,6 @@
       gap: 10px;
       padding-bottom: 10px;
       border-bottom: 1px solid #FFF;
-
-      span {
-        font-size: 13px;
-        color: red;
-        margin-top: 4px;
-      }
     }
 
     &_price {
@@ -151,18 +143,41 @@
   }
 }
 
+.basketList {
+  &__elem {
+    display: flex;
+
+    &_desc {
+      margin-left: 45px;
+    }
+
+    &_count {
+      max-width: 26px;
+      width: 100%;
+    }
+    p {
+      font-size: 17px;
+    }
+
+    &_x {
+      color: red!important;
+      margin-right: 10px;
+    }
+  }
+}
+
 .inputError {
   input {
     border: 1px solid red!important;
-
   }
 }
 
 //media
 
 @media screen and (max-width: 397px) {
-  .basket__desc p {
-    font-size: 17px;
+
+  span {
+    margin-top: 0!important;
   }
 
   .basket__desc_coment {
@@ -182,6 +197,10 @@
 
 @media screen and (max-width: 363px) {
   .basket__desc p {
+    font-size: 12px;
+  }
+
+  .basket__desc_list span {
     font-size: 12px;
   }
 

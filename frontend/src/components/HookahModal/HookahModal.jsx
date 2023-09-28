@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './HookahModal.scss'
 import Line from '../../assets/images/hookah/Line42.png'
 
-const HookahModal = ({setIsShow, additive_types, selected, setAdditiveType}) => {
+const HookahModal = ({setIsShow, additive_types, selected, setAdditiveType, selectedPrice}) => {
     const [selectedType, setSelectedType] = useState(selected)
 
     const closeModal = (e) => {
@@ -18,9 +18,9 @@ const HookahModal = ({setIsShow, additive_types, selected, setAdditiveType}) => 
             setSelectedType("")
         } else {
             setSelectedType(type)
+
         }
     }
-
     return (
         <div className="hookahModal">
             <div className="hookahModal__desc">

@@ -19,12 +19,10 @@ const Register = () => {
     }
 
     useEffect(() => {
-        api.authApi.register(state).then(goToBack)
-            .catch((err)=>{
-                setErrRegister(err.response.data)
-            });
-    }, [state]);
-
+        if (!!errRegister){
+            createOrder()
+        }
+    }, [errRegister]);
 
     const goToBack = () => {
         setIsRegistered(true)
@@ -34,11 +32,10 @@ const Register = () => {
     }
 
     const registerAction = () => {
-        createOrder()
         setClassError(true)
         api.authApi.register(state).then(goToBack)
             .catch((err)=>{
-                console.log(err)
+                setErrRegister(err.response.data)
             });
     }
 
@@ -61,6 +58,10 @@ const Register = () => {
         }
         if (!state.re_password || errRegister.re_password) {
             alert(`Повторить пароль: ${errRegister.re_password}`)
+            return
+        }
+        if (errRegister.non_field_errors) {
+            alert(`Пароль: ${errRegister.non_field_errors}`)
             return
         }
         if (!state.phone || errRegister.phone) {
@@ -110,7 +111,7 @@ const Register = () => {
                                         onChange={e => setData("last_name", e)}
                                     />
                                 </div>
-                                <div className={classError && errRegister.re_password ? "inputError" : ''}>
+                                <div className={classError && (errRegister.re_password || errRegister.non_field_errors) ? "inputError" : ''}>
                                     <input
                                         value={state.re_password}
                                         type="password"

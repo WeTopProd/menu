@@ -138,7 +138,7 @@ class GoodsViewSet(viewsets.ModelViewSet):
 
         num_table = request.data.get('num_table', '')
         num_person = request.data.get('num_person', '')
-        total_price = request.data.get('total_price')
+        total_price = request.data.get('total_price', )
         comment = request.data.get('comment', '')
 
         if not num_table or not num_person or not total_price:
@@ -149,8 +149,15 @@ class GoodsViewSet(viewsets.ModelViewSet):
 
         for item in shopping_cart:
             order_items_to_create.append(
-                OrderItem(order=None, goods=item.goods, count=item.count,
-                          price=item.price, additive_price=item.additive_price)
+                OrderItem(
+                    order=None,
+                    goods=item.goods,
+                    count=item.count,
+                    price=item.price,
+                    additive_price=item.additive_price,
+                    tobacco_type=item.tobacco_type,
+                    additive_type=item.additive_type
+                )
             )
 
         with transaction.atomic():

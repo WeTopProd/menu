@@ -207,7 +207,5 @@ class OrderSerializer(serializers.ModelSerializer):
             'num_table',
             'num_person',
             'comment',
-            'tobacco_type',
-            'additive_type',
             'items'
         )

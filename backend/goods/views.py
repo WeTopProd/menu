@@ -65,9 +65,19 @@ class GoodsViewSet(viewsets.ModelViewSet):
     def add_goods(self, model, request, pk):
         goods = get_object_or_404(Goods, pk=pk)
         user = self.request.user
+        additive_price = request.data.get('additive_price', 0)
+        tobacco_type = request.data.get('tobacco_type', '')
+        additive_type = request.data.get('additive_type', '')
         if model.objects.filter(goods=goods, user=user).exists():
             raise ValidationError('Товар уже добавлен')
-        model.objects.create(goods=goods, user=user, price=goods.price)
+        model.objects.create(
+            goods=goods,
+            user=user,
+            price=goods.price,
+            additive_price=additive_price,
+            tobacco_type=tobacco_type,
+            additive_type=additive_type
+        )
         serializer = ShortGoodsSerializer(goods)
         return Response(data=serializer.data, status=status.HTTP_201_CREATED)
 
@@ -126,14 +136,12 @@ class GoodsViewSet(viewsets.ModelViewSet):
             return Response({'error': 'Корзина пуста!'},
                             status=status.HTTP_400_BAD_REQUEST)
 
-        total_price = request.data.get('total_price', '')
         num_table = request.data.get('num_table', '')
         num_person = request.data.get('num_person', '')
+        total_price = request.data.get('total_price')
         comment = request.data.get('comment', '')
-        tobacco_type = request.data.get('tobacco_type', '')
-        additive_type = request.data.get('additive_type', '')
 
-        if not num_table or not num_person or not comment:
+        if not num_table or not num_person or not total_price:
             return Response(
                 {'error': 'Отсутствуют обязательные поля в запросе'},
                 status=status.HTTP_400_BAD_REQUEST)
@@ -151,9 +159,7 @@ class GoodsViewSet(viewsets.ModelViewSet):
                 total_price=total_price,
                 num_table=num_table,
                 num_person=num_person,
-                comment=comment,
-                tobacco_type=tobacco_type,
-                additive_type=additive_type,
+                comment=comment
             )
 
             for order_item in order_items_to_create:

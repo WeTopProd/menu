@@ -157,12 +157,12 @@ class Goods(models.Model):
     tobacco_type = models.ManyToManyField(
         HookahTobacco,
         verbose_name='Тип табака',
-        blank=True,
+        blank=True
     )
     additive_type = models.ManyToManyField(
         HookahAdditive,
         verbose_name='Тип добавки для кальяна',
-        blank=True,
+        blank=True
     )
 
     class Meta:
@@ -223,6 +223,18 @@ class ShoppingCart(models.Model):
         null=True,
         blank=True
     )
+    tobacco_type = models.CharField(
+        'Тип табака',
+        max_length=155,
+        blank=True,
+        null=True
+    )
+    additive_type = models.CharField(
+        'Тип добавки для кальяна',
+        max_length=155,
+        blank=True,
+        null=True
+    )
 
     class Meta:
         verbose_name = 'Покупка'
@@ -251,8 +263,6 @@ class Order(models.Model):
     num_table = models.IntegerField('Номер стола')
     num_person = models.IntegerField('Количество персон')
     comment = models.TextField('Комментарий к заказу')
-    tobacco_type = models.CharField('Тип табака', max_length=50)
-    additive_type = models.CharField('Тип добавки для кальяна', max_length=50)
 
     class Meta:
         verbose_name = 'Заказ'
@@ -272,6 +282,8 @@ class OrderItem(models.Model):
         null=True,
         blank=True
     )
+    tobacco_type = models.CharField('Тип табака', max_length=50)
+    additive_type = models.CharField('Тип добавки для кальяна', max_length=50)
 
     class Meta:
         verbose_name = 'Товар в заказе'

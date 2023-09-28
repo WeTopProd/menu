@@ -131,7 +131,6 @@ node_modules/
 .spyproject
 # Rope project settings
 .ropeproject
-migrations/
 # mkdocs documentation
 /site
 # mypy

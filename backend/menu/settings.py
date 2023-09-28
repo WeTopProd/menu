@@ -6,13 +6,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-_4@)@(9#&fahh(=%*2@483+hz!e(dof_$m0+o&9wakb29z9bvs'
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = [
-    '*',
-    '127.0.0.1',
-    'localhost',
-]
+if DEBUG:
+    ALLOWED_HOSTS = [
+        '*',
+        '127.0.0.1',
+        'localhost',
+    ]
+else:
+    ALLOWED_HOSTS = [
+        'frantsuz-menu.ru',
+        '134.0.116.27',
+    ]
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -66,12 +73,25 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'menu.wsgi.application'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'frantsuz_menu',
+            'USER': 'frantsuz_menu_user',
+            'PASSWORD': '20031956',
+            'HOST': '134.0.116.27',
+            'PORT': '5432'
+        }
+    }
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -121,7 +141,14 @@ REST_FRAMEWORK = {
 }
 
 CORS_URLS_REGEX = r'^/api/.*$'
-CORS_ORIGIN_ALLOW_ALL = True
+if DEBUG:
+    CORS_ORIGIN_ALLOW_ALL = True
+else:
+    CORS_ALLOWED_ORIGINS = [
+        'https://134.0.116.27:3000',
+        'http://134.0.116.27:3000',
+        'http://127.0.0.1:8000'
+    ]
 
 
 DJOSER = {

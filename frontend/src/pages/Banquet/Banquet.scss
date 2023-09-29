@@ -10,12 +10,9 @@
     align-items: center;
     gap: 10px;
 
-    a {
-      max-width: 380px;
-    }
+    a {}
 
     &_item {
-      max-width: 380px;
       width: 100%;
       min-height: 70px;
       display: flex;

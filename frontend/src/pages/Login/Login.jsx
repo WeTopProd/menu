@@ -43,7 +43,7 @@ const Login = () => {
         <div className="login">
             {
                 isLogin
-                    ? <RegisterActive desc="Вы успешно зарегистрировались"/>
+                    ? <RegisterActive desc="Вы успешно вошли"/>
                     : <div className={"login__container login__container_login"}>
                         <h3 className={"login__container_title login__container_title_login"}>
                             Вход в личный кабинет

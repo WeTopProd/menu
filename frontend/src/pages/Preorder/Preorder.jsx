@@ -2,10 +2,13 @@ import React, {useEffect, useState} from 'react';
 import './Preorder.scss'
 import RegisterActive from "../../components/RegisterActive/RegisterActive";
 import {useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 
 const Preorder = () => {
     const [preorder, setPreorder] = useState(false)
     const {me} = useSelector((state) => state.auth)
+    const navigate = useNavigate();
+
 
     /*
      const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,8}$/i; // Почта
@@ -36,6 +39,13 @@ const Preorder = () => {
         setPhone(value);
         validatePhone(value);
     };
+
+    const goToPreorder = () => {
+        setPreorder(true)
+        setTimeout(()=>{
+            navigate("/")
+        }, 1000)
+    }
 
     const validateEmail = (email) => {
         const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,8}$/i;
@@ -96,7 +106,7 @@ const Preorder = () => {
                             <input type="text" placeholder="Доп-услуги"/>
 
                         </div>
-                        <button onClick={() => setPreorder(true)}>Оформить заказ</button>
+                        <button onClick={goToPreorder}>Оформить заказ</button>
                     </div>
             }
 

@@ -14,6 +14,7 @@ const Banquet = () => {
     }, []);
 
     const listUrl = (name) => `/list/${pageName}/${name}`
+
     return (
         <div className="banquet">
             <div className="banquet__container">

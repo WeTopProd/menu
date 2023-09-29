@@ -21,16 +21,13 @@
       gap: 10px;
       justify-content: space-between;
     }
-    a {
-      max-width: 380px;
-    }
+    a {}
 
     img {
       margin-top: 42px;
     }
 
     &_item {
-      max-width: 380px;
       width: 100%;
       min-height: 70px;
       display: flex;

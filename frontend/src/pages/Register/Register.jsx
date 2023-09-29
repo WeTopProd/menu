@@ -14,6 +14,7 @@ const Register = () => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const navigate = useNavigate();
 
+
     const setData = (key, e) => {
         dispatch({type: 'set_data', key: key, value: e.target.value})
     }
@@ -27,8 +28,8 @@ const Register = () => {
     const goToBack = () => {
         setIsRegistered(true)
         setTimeout(()=>{
-            navigate("/")
-        }, 2000)
+            navigate("/login")
+        }, 1000)
     }
 
     const registerAction = () => {

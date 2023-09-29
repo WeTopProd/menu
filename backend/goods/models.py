@@ -29,6 +29,7 @@ class GoodsType(models.Model):
     class Meta:
         verbose_name = 'Тип меню'
         verbose_name_plural = 'Типы меню'
+        ordering = ['name']
 
     def __str__(self):
         return self.name
@@ -75,6 +76,7 @@ class HookahType(models.Model):
     class Meta:
         verbose_name = 'Тип кальяна'
         verbose_name_plural = 'Типы кальянов'
+        ordering = ['name']
 
     def __str__(self):
         return self.name
@@ -89,6 +91,7 @@ class HookahTobacco(models.Model):
     class Meta:
         verbose_name = 'Тип табакаа'
         verbose_name_plural = 'Типы табаков'
+        ordering = ['name']
 
     def __str__(self):
         return self.name
@@ -104,6 +107,7 @@ class HookahAdditive(models.Model):
     class Meta:
         verbose_name = 'Тип добавки для кальяна'
         verbose_name_plural = 'Типы добавок для кальяна'
+        ordering = ['name']
 
     def __str__(self):
         return self.name

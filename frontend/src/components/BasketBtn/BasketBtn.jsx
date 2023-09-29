@@ -49,9 +49,7 @@ const BasketBtn = ({id, type, data, additivePrice}) => {
     }
 
     const countPlus = () => {
-        if (goodsCount() > count()){
-            updateBasket(count() + 1)
-        }
+        updateBasket(count() + 1)
     }
 
     const countMinus = () => {

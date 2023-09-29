@@ -24,8 +24,6 @@ const HookahElement = ({good, type}) => {
         })
     }
 
-    console.log(good.additive_type, 'ppppppppppppppppp')
-
     const getGood = () => {
         return goods.find(g => g.goods.id === good.id)
     }

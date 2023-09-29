@@ -60,6 +60,7 @@ class GoodsSubtype(models.Model):
     class Meta:
         verbose_name = 'Тип товара'
         verbose_name_plural = 'Типы товаров'
+        ordering = ['name']
 
     def __str__(self):
         return self.name

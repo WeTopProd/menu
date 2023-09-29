@@ -1,22 +1,22 @@
 .header {
-  width: 100%;
+  width: 104%;
+  margin-left: -8px;
   min-height: 88px;
   background: url(../../../assets/images/header/background.png) center no-repeat;
-  background-size: cover;
+  -moz-background-size: 100%;
+  -webkit-background-size: 100%;
+  -o-background-size: 100%;
   position: fixed;
   z-index: 99;
-
-
 
   &__container {
     display: flex;
     align-items: center;
-    padding: 0 25px;
-    margin-top: 5px;
+    justify-content: space-between;
+    padding: 0 50px 0 34px;
 
     &_link {
       height: 76px;
-      margin: -3px 0 0 76px;
       max-width: 168px;
       width: 100%;
     }
@@ -26,7 +26,6 @@
       justify-content: end;
       align-items: center;
       gap: 8px;
-      width: 100%;
 
       &_linkReg {
         width: 38px;
@@ -70,6 +69,12 @@
 
 //media
 
+@media screen and (max-width: 415px)  {
+  .header__container {
+    padding: 0 34px 0 34px;
+  }
+}
+
 @media screen and (max-width: 412px) {
   .header__container {
     justify-content: space-between;
@@ -90,10 +95,7 @@
 
 @media screen and (max-width: 370px) {
   .header__container {
-  }
-
-  .header__container {
-    padding: 0 10px;
+    padding: 0 20px 0 20px;
   }
 }
 

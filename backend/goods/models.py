@@ -29,7 +29,7 @@ class GoodsType(models.Model):
     class Meta:
         verbose_name = 'Тип меню'
         verbose_name_plural = 'Типы меню'
-        ordering = ['name']
+        ordering = ['pk']
 
     def __str__(self):
         return self.name

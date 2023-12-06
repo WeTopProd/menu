@@ -188,8 +188,8 @@ class GoodsViewSet(viewsets.ModelViewSet):
                    f"ДАТА ЗАКАЗА: {date}\nНОМЕР СТОЛА: {num_table}\n"
                    f"КОЛИЧЕСТВО ЧЕЛОВЕК: {num_person}\nКОММЕНТАРИЙ: {comment}"
                    f"\n\nСПИСОК ТОВАРОВ:\n")
-        i = 0
         for good in order_items_to_create:
+            i = 0
             message += (f"ТОВАР {i + 1}:\n"
                         f"НАЗВАНИЕ: {good.goods}\n"
                         f"КОЛИЧЕСТВО: {good.count}\n"

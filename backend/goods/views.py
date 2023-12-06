@@ -180,7 +180,7 @@ class GoodsViewSet(viewsets.ModelViewSet):
             shopping_cart.delete()
 
         serializer = OrderSerializer(order)
-        now = datetime.now() + timedelta(hours=3)
+        now = datetime.now()
         date = now.strftime("%d %B %Y, %A %H:%M")
         message = (f"ЗАКАЗ ОТ {user.last_name} {user.first_name}\n\n"
                    f"НОМЕР ТЕЛЕФОНА: {user.phone}\nПОЧТА: {user.email}\n"

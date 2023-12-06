@@ -176,7 +176,7 @@ class Goods(models.Model):
         ordering = ['title']
 
     def __str__(self):
-        return f'Товар {self.title}'
+        return self.title
 
 
 class Favorite(models.Model):

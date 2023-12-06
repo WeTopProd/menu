@@ -188,12 +188,13 @@ class GoodsViewSet(viewsets.ModelViewSet):
                    f"ДАТА ЗАКАЗА: {date}\nНОМЕР СТОЛА: {num_table}\n"
                    f"КОЛИЧЕСТВО ЧЕЛОВЕК: {num_person}\nКОММЕНТАРИЙ: {comment}"
                    f"\n\nСПИСОК ТОВАРОВ:\n")
+        i = 1
         for good in order_items_to_create:
-            i = 0
-            message += (f"ТОВАР {i + 1}:\n"
+            message += (f"ТОВАР {i}:\n"
                         f"НАЗВАНИЕ: {good.goods}\n"
                         f"КОЛИЧЕСТВО: {good.count}\n"
                         f"ЦЕНА: {good.price}\n\n")
+            i += 1
         message += f"ОБЩАЯ СУММА: {total_price}"
         send_mail(
             f"ЗАКАЗ ОТ {user.last_name} {user.first_name}",

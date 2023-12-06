@@ -6,9 +6,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-_4@)@(9#&fahh(=%*2@483+hz!e(dof_$m0+o&9wakb29z9bvs'
 
-DEBUG = True
+DEBUG = False
 
-if not DEBUG:
+if DEBUG:
     ALLOWED_HOSTS = [
         '*',
         '127.0.0.1',
@@ -73,7 +73,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'menu.wsgi.application'
 
-if not DEBUG:
+if DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -180,8 +180,8 @@ PHONENUMBER_DEFAULT_REGION = 'RU'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'server61.hosting.reg.ru'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = 'info@tyteda.ru'
-EMAIL_HOST_PASSWORD = '9I7f4T7x'
+EMAIL_HOST_USER = 'order@wetop.ru'
+EMAIL_HOST_PASSWORD = 'sB1gD2eB1hvN2lP7'
 EMAIL_USE_SSL = True
-DEFAULT_FROM_EMAIL = 'info@tyteda.ru'
-SERVER_EMAIL = 'info@tyteda.ru'
+DEFAULT_FROM_EMAIL = 'order@wetop.ru'
+SERVER_EMAIL = 'order@wetop.ru'

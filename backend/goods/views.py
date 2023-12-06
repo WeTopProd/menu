@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from django.conf import settings
 from django.core.mail import send_mail
@@ -186,8 +186,8 @@ class GoodsViewSet(viewsets.ModelViewSet):
                    f"НОМЕР ТЕЛЕФОНА: {user.phone}\nПОЧТА: {user.email}\n"
                    f"\nЗАКАЗ:\n"
                    f"ДАТА ЗАКАЗА: {date}\nНОМЕР СТОЛА: {num_table}\n"
-                   f"КОЛИЧЕСТВО ЧЕЛОВЕК: {num_person}\n КОММЕНТАРИЙ: {comment}"
-                   f"\n\n")
+                   f"КОЛИЧЕСТВО ЧЕЛОВЕК: {num_person}\nКОММЕНТАРИЙ: {comment}"
+                   f"\n\nСПИСОК ТОВАРОВ:\n")
         i = 0
         for good in order_items_to_create:
             message += (f"ТОВАР {i + 1}:\n"

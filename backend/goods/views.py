@@ -183,7 +183,7 @@ class GoodsViewSet(viewsets.ModelViewSet):
         now = datetime.now() + timedelta(hours=3)
         date = now.strftime("%d %B %Y, %A %H:%M")
         message = (f"ЗАКАЗ ОТ {user.last_name} {user.first_name}\n\n"
-                   f"НОМЕР ТЕЛЕФОНА: {user.phone}\nПОЧТА: {user.email_user}\n"
+                   f"НОМЕР ТЕЛЕФОНА: {user.phone}\nПОЧТА: {user.email}\n"
                    f"\nЗАКАЗ:\n"
                    f"ДАТА ЗАКАЗА: {date}\nНОМЕР СТОЛА: {num_table}\n"
                    f"КОЛИЧЕСТВО ЧЕЛОВЕК: {num_person}\n КОММЕНТАРИЙ: {comment}"

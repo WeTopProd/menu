@@ -6,9 +6,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-_4@)@(9#&fahh(=%*2@483+hz!e(dof_$m0+o&9wakb29z9bvs'
 
-DEBUG = False
+DEBUG = True
 
-if DEBUG:
+if not DEBUG:
     ALLOWED_HOSTS = [
         '*',
         '127.0.0.1',
@@ -73,7 +73,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'menu.wsgi.application'
 
-if DEBUG:
+if not DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -141,14 +141,7 @@ REST_FRAMEWORK = {
 }
 
 CORS_URLS_REGEX = r'^/api/.*$'
-if DEBUG:
-    CORS_ORIGIN_ALLOW_ALL = True
-else:
-    CORS_ALLOWED_ORIGINS = [
-        'https://134.0.116.27:3000',
-        'http://134.0.116.27:3000',
-        'http://127.0.0.1:8000'
-    ]
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 DJOSER = {
